@@ -1,0 +1,9 @@
+name: Guilherme Rossato's Blog
+description: How things are implemented in practice
+markdown: redcarpet
+collections:
+  blog:
+    output: true
+    permalink: /posts/:title/
+gems:
+  - jekyll-redirect-from
