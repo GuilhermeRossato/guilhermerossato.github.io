@@ -1,0 +1,21 @@
+<div class="content">
+	<div class='label'>Blog Post From Data</div>
+	<div class="data-list">
+		{% for t in site.data.post %}
+			<div class="data-link">
+				<a class="data-title" href="{{ page.permalinky }}">{{ t.title }}</a>
+			</div>
+			<div>{{ t.url }}</div>
+		{% endfor %}
+	</div>
+	<div class='label'>Actual thing</div>
+	<div class="blogy-list">
+		{% for t in site.blog %}
+			<div class="data-link">
+				<a class="data-title" href="{{ page.permalink }}">{{ t.title }}</a>
+			</div>
+			<div>{{ t.urly }}</div>
+			<div class="blogy-type">{{ t.type }}</div>
+		{% endfor %}
+	</div>
+</div>
