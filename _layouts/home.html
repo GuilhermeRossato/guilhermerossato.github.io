@@ -5,24 +5,22 @@ layout: home
 <!DOCTYPE html>
 <html lang="en-US">
 	<head>
-		<meta charset='utf-8'>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 {% for style in site.static_files %}{% if style.path contains 'style/' %}		<link rel="stylesheet" href="{{ site.baseurl }}{{ style.path }}">
 {% endif %}{% endfor %}{% for script in site.static_files %}{% if script.path contains 'script/blog/' %}		<script type="text/javascript" src="{{ site.baseurl }}{{ script.path }}"></script>
 {% endif %}{% endfor %}{% for script in site.static_files %}{% if script.path contains 'script/classes/' %}		<script type="text/javascript" src="{{ site.baseurl }}{{ script.path }}"></script>
 {% endif %}{% endfor %}{% for script in site.static_files %}{% if script.path contains 'script/modules/' %}		<script type="text/javascript" src="{{ site.baseurl }}{{ script.path }}"></script>
 {% endif %}{% endfor %}		<script type="text/javascript" src="/script/script.js"></script>
 	</head>
-	<body class="{{ site.page }}">
-{% include top-header.html %}
-{% include sidebar.html %}
+	<body class="home">
+		<div class='main-grid'>
+{% include menu.html %}
 {% include header.html %}
-		<div class="container">
-			<section id="main_content">
-{{ content }}
-			</section>
+{% include content.html %}
 		</div>
-{% include footer.html %}
+		{% include footer.html %}
 	</body>
 </html>
