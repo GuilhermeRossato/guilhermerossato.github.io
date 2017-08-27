@@ -1,6 +1,0 @@
-<div class="sidebar-wrapper">
-	<div class="sidebar">
-		<h3>Share</h3>{% for button in site.data.share.options %}
-		<a href="{{ button.url | default: '#' }}" {% if button.action %}onclick="{{ button.action }}" {% endif %}title="{{ button.name }}"><i class="fa {{ button.class }}"></i></a>{% endfor %}
-	</div>
-</div>
