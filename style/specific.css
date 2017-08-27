@@ -1,0 +1,30 @@
+/* Everything that is text-sensitive goes here */
+
+/* Subtitle */
+
+.conditional-break-1 {
+	display: none;
+}
+
+@media screen and (max-width: 740px) {
+	header.title > h2 > .conditional-break-1 {
+		display: block;
+	}
+	header.title > h2 {
+		margin-bottom: 50px;
+		letter-spacing:2px;
+		word-spacing: 12px;
+	}
+}
+
+@media screen and (max-width: 482px) {
+	header.title > h2 > .conditional-break-1 {
+		display: none;
+	}
+	header.title > h2 {
+		margin-left: 35px;
+		margin-right: 35px;
+		letter-spacing: 1px;
+		word-spacing: auto;
+	}
+}
