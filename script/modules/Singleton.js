@@ -3,6 +3,6 @@ const Singleton = (function() {
 		init: true,
 	};
 	return {
-		a: a;
+		a: a
 	}
 })();
