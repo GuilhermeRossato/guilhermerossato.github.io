@@ -1,0 +1,20 @@
+body {
+	background: #DDDDDD url("../images/background.jpg");
+	color: #272924;
+	font-family: 'Whitney Regular';
+}
+
+/* Header Color */
+header.title > h1 {
+	color: #000000;
+}
+
+/* Top Menu */
+
+.main-grid > .menu > .buttons {
+	background-color: rgba(0,0,0,0.2);
+}
+
+.menu > .buttons > a {
+	color: #fff;
+}
