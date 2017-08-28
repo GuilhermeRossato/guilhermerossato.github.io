@@ -16,4 +16,4 @@ It works by using Github's API to load the public stuff (commits/releases), then
 
 1. [Github API Docs](https://developer.github.com/) - Explanation of server protocols given by Github that make this project possible.
 2. [Jekyll](https://jekyllrb.com/) - Jekyll is the static page generator that Github Pages are powered with.
-3. [Jekyll Assets v3](https://jekyll.github.io/jekyll-assets/) - A Jekyll plugin that collects, converts and compresses a site’s JavaScript and CSS assets.
+3. Me, because I make my own javascript ;)
