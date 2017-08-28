@@ -1,5 +1,6 @@
 name: Guilherme Rossato
-description: How things are implemented in practice
+description: A handmade blog about developing things in practice
+timezone: America/Sao_Paulo
 markdown: redcarpet
 collections:
   blog:
