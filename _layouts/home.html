@@ -7,7 +7,7 @@ layout: home
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 		<meta http-equiv="X-UA-Compatible" content="chrome=1">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<title>Guilherme Rossato - Unnamed</title>
+		<title>Guilherme Rossato - {{ page.title }}</title>
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 {% for style in site.static_files %}{% if style.path contains 'style/global/' %}		<link rel="stylesheet" href="{{ site.baseurl }}{{ style.path }}">
 {% endif %}{% endfor %}{% for script in site.static_files %}{% if script.path contains 'script/blog/' %}		<script type="text/javascript" src="{{ site.baseurl }}{{ script.path }}"></script>
