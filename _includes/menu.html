@@ -1,7 +1,7 @@
 			<div class="menu">
 				<div class="buttons">
-					<a>Home</a>
-					<a>Blog</a>
-					<a>About</a>
+					<a{% if page.title == "Home" %} class="current"{% endif %}>Home</a>
+					<a{% if page.title == "Blog" %} class="current"{% endif %}>Blog</a>
+					<a{% if page.title == "About" %} class="current"{% endif %}>About</a>
 				</div>
 			</div>
