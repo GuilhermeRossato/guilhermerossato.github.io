@@ -17,11 +17,15 @@
 	padding: 5px 10px;
 }
 
-.menu > .buttons > a:hover {
+.menu > .buttons > a:hover, .menu > .buttons > a.current {
 	border: 1px solid;
 	border-top: none;
 	border-right: none;
 	border-left: none;
 	padding-bottom: 4px;
 	cursor: pointer;
+}
+
+.menu > .buttons > a.current {
+	cursor: default;
 }
