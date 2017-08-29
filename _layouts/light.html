@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Guilherme Rossato - Light Theme - {{ page.title }}</title>
 		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-{% for style in site.static_files %}{% if style.path contains 'style/global/' %}		<link rel="stylesheet" href="{{ site.baseurl }}{{ style.path }}">
+{% for style in site.static_files %}{% if style.path contains 'style/default/' %}		<link rel="stylesheet" href="{{ site.baseurl }}{{ style.path }}">
 {% endif %}{% endfor %}{% for style in site.static_files %}{% if style.path contains 'style/light/' %}		<link rel="stylesheet" href="{{ site.baseurl }}{{ style.path }}">
 {% endif %}{% endfor %}{% for script in site.static_files %}{% if script.path contains 'script/blog/' %}		<script type="text/javascript" src="{{ site.baseurl }}{{ script.path }}"></script>
 {% endif %}{% endfor %}{% for script in site.static_files %}{% if script.path contains 'script/classes/' %}		<script type="text/javascript" src="{{ site.baseurl }}{{ script.path }}"></script>
