@@ -68,7 +68,6 @@ ul.content {
 	margin: 0;
 }
 
-
 a {
 	color: #6C6C6C
 }
@@ -95,4 +94,29 @@ a {
 	top: 0;
 	right: 0;
 	padding:5px;
+}
+
+/* Commit List */
+
+.dev-spree .commit-group {
+	display: flex;
+	flex-wrap: wrap;
+	background-color: rgba(127,127,127,0.2);
+}
+
+.dev-spree .commit-group .commit-entry {
+	flex-grow: 0.5;
+	padding:5px;
+	margin:3px;
+	flex-basis: 250px;
+	min-width: 200px;
+	background-color: rgba(127,127,127,0.2);
+}
+
+.commit-entry h3 {
+	margin: 10px;
+}
+
+.commit-entry {
+	
 }
