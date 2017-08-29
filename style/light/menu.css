@@ -1,0 +1,10 @@
+
+/* Top Menu */
+
+.main-grid > .menu > .buttons {
+	background-color: rgba(0,0,0,0.2);
+}
+
+.menu > .buttons > a {
+	color: #fff;
+}
