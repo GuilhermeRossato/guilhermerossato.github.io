@@ -88,3 +88,11 @@ a {
 	width: 107%;
 	height: 100%;
 }
+
+.build-date {
+	display: block;
+	position: absolute;
+	top: 0;
+	right: 0;
+	padding:5px;
+}

@@ -16,6 +16,7 @@ layout: home
 {% endif %}{% endfor %}		<script type="text/javascript" src="/script/script.js"></script>
 	</head>
 	<body class="home">
+		<div class='build-date'><span>Build {{ site.time | date: "%Y-%m-%d" }}</span></div>
 		<div class='main-grid'>
 {% include menu.html %}
 {% include header.html %}
