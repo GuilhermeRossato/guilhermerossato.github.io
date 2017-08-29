@@ -1,5 +1,1 @@
-<<<<<<< test
-a
-=======
 b
->>>>>>> done something else
