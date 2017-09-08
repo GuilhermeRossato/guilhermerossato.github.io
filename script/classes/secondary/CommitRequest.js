@@ -9,7 +9,7 @@ class CommitRequest extends GitRequest {
 			if (this.commit) {
 				this.url += this.commit;
 			}
-			super();
+			super.dispatch();
 		} else {
 			setTimeout(()=>{
 				this.dispatchEvent("error", "Couldn't dispatch commit request due to missing parameters");
