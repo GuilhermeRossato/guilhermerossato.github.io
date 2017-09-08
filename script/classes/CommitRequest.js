@@ -1,13 +1,7 @@
 class CommitRequest extends GitRequest {
-	constructor() {
+	constructor(repository) {
 		super();
-		this.headers = [{
-			name: 'Accept',
-			value: 'application/vnd.github.v3.raw+json',
-		},{
-			name: 'Content-Type',
-			value: 'application/vnd.github.v3.raw+json',
-		}];
+		this.repository = repository;
 	}
 	dispatch() {
 		if (this.user && this.repository) {
@@ -17,8 +11,17 @@ class CommitRequest extends GitRequest {
 			}
 			super();
 		} else {
-			console.warn("Couldn't dispatch commit request due to missing parameters");
+			setTimeout(()=>{
+				this.dispatchEvent("error", "Couldn't dispatch commit request due to missing parameters");
+			}, 1);
 		}
 		return this;
+	}
+	dispatchEvent(type, ...data) {
+		if (type == "success") {
+			console.log("Got an answer for '"+this.repository+"' - Commits");
+			console.log(...data);
+		}
+		return super(type, ...data);
 	}
 }

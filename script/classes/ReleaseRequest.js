@@ -1,13 +1,7 @@
 class ReleaseRequest extends GitRequest {
-	constructor() {
+	constructor(repository) {
 		super();
-		this.headers = [{
-			name: 'Accept',
-			value: 'application/vnd.github.v3.raw+json',
-		},{
-			name: 'Content-Type',
-			value: 'application/vnd.github.v3.raw+json',
-		}];
+		this.repository = repository;
 	}
 	dispatch() {
 		if (this.user && this.repository) {
@@ -20,5 +14,12 @@ class ReleaseRequest extends GitRequest {
 			console.warn("Couldn't dispatch commit request due to missing parameters");
 		}
 		return this;
+	}
+	dispatchEvent(type, ...data) {
+		if (type == "success") {
+			console.log("Got an answer for '"+this.repository+"' - Releases");
+			console.log(...data);
+		}
+		return super(type, ...data);
 	}
 }
