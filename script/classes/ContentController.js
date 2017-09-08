@@ -4,7 +4,6 @@ class ContentController {
 		this.commits = [];
 		this.releases = [];
 		this.posts = [];
-		this.lineQuery = new LineQuery(this.date);
 		StateMachine.call(this, {
 			"idle": {},
 			"waiting-response": {},
@@ -16,6 +15,8 @@ class ContentController {
 		});
 		this.timer = setInterval(contentController.iterate.bind(contentController),1000);
 		this.iterate();
+		this.requestSystem = new RequestSystem();
+		this.requestSystem.dispatchAllRequests();
 	}
 	getRemainingScroll() {
 		return (document.body.scrollHeight - window.innerHeight - window.scrollY);
@@ -31,9 +32,14 @@ class ContentController {
 			if (this.promise.count < Settings['seconds_timeout']) {
 				this.promise.count++;
 			} else {
-				this.errorType = "timeout";
+				this.dispatchEvent("error", "Timeout Error");
 				this.state = "showing-error";
 			}
+		}
+	}
+	dispatchEvent(type, ...data) {
+		if (type === "error") {
+			console.warn(...data);
 		}
 	}
 }
