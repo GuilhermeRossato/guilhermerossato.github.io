@@ -1,6 +1,5 @@
 class GitRequest {
 	constructor() {
-		this.url = 'http://api.github.com.br';
 		this.headers = [{
 			name: 'Accept',
 			value: 'application/vnd.github.v3.raw+json',
@@ -10,37 +9,25 @@ class GitRequest {
 		}];
 		this.callbacks = {};
 	}
-	user(username) {
-		this.user = username;
-		return this;
-	}
-	repository(name) {
-		this.repository = name;
-		return this;
-	}
-	commit(code) {
-		this.commit = code;
-		return this;
-	}
-	formatResponse(type) {
-		var id = 0;
-		if (this.headers.some((header, i)=>((header.type === 'Content-Type') && (id = i || true)))) {
-			this.headers[id].value = 'application/vnd.github.v3.'+type;
-		}
-		return this;
+	handleHttpReturn(response, eventType) {
+		this.response = response;
+		this.error = (eventType == "error");
+		this.waiting = false;
 	}
 	dispatch() {
 		if (this.waiting) {
-			console.warn("Unable to dispatch, still waiting last request");
+			setTimeout(()=>{
+				this.dispatchEvent("error", "Unable to dispatch, still waiting last request");
+			}, 1);
 		} else {
 			this.waiting = true;
 			var xhr = new XMLHttpRequest();
 			this.headers.forEach(header => {
 				xhr.setRequestHeader(header.name, header.value);
 			});
+			xhr.onload = (ev) => this.handleHttpReturn(ev, "success");
+			xhr.onerror = (ev) => this.handleHttpReturn(ev, "error");
 			xhr.open('GET', this.url);
-			xhr.onload = (ev) => ((this.response = ev) && (this.callbacks.success instanceof Function) && (this.callbacks.success()) && (this.waiting = false));
-			xhr.onerror = (ev) => ((this.response = ev) && (this.error = true) && (this.callbacks.error instanceof Function) && (this.callbacks.error() && (this.waiting = false)));
 		}
 		return this;
 	}
@@ -50,13 +37,24 @@ class GitRequest {
 		return this;
 	}
 	on(type, callback) {
-		if (type == "load" || type == "sucess") {
+		if (type == "load" || type == "success") {
 			this.callbacks.success = callback;
 		} else if (type == "error") {
 			this.callbacks.error = callback;
 		} else {
-			console.warn("Couldn't attach callback due to unknown event type: "+type.toString());
+			// I hope no one ever sees this
+			setTimeout(()=>{
+				this.dispatchEvent("error", "Couldn't attach callback due to unknown event type: "+type.toString());
+			}, 1);
 		}
 		return this;
+	}
+	dispatchEvent(type, ...data) {
+		if (this.callbacks[type]) {
+			this.callbacks[type].call(this, ...data);
+		}
+		if (type == "error") {
+			console.warn("GitRequest Error: ", ...data);
+		}
 	}
 }
