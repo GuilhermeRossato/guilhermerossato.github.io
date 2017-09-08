@@ -13,7 +13,7 @@ class ContentController {
 				}
 			}
 		});
-		this.timer = setInterval(contentController.iterate.bind(contentController),1000);
+		this.timer = setInterval(this.iterate.bind(this),1000);
 		this.iterate();
 		this.requestSystem = new RequestSystem();
 		this.requestSystem.dispatchAllRequests();
