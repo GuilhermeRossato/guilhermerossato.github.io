@@ -4,8 +4,8 @@ const Settings = {
 	"git": {
 		"username": "GuilhermeRossato",
 		"repositories": [
-			"guilhermerossato.github.io",
-			"3D-Redstone-Simulator",
+			//"guilhermerossato.github.io",
+			//"3D-Redstone-Simulator",
 			"Blurred-Boxes"
 		]
 	},
