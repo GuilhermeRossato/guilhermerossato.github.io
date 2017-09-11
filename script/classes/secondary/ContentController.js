@@ -23,7 +23,7 @@ class ContentController {
 	}
 	iterate() {
 		if (this.state === "idle") {
-			if (getRemainingScroll() < Settings['next_data_threshold']) {
+			if (getRemainingScroll() < Settings['requests']['next_data_threshold']) {
 				this.promise = this.lineQuery.advance();
 				this.promise.count = 0;
 				this.state = "waiting-response";
