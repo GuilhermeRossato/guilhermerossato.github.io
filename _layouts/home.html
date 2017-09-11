@@ -11,7 +11,7 @@
 {% endif %}{% endfor %}{% for script in site.static_files %}{% if script.path contains 'script/classes/primitive' %}		<script type="text/javascript" src="{{ site.baseurl }}{{ script.path }}"></script>
 {% endif %}{% endfor %}{% for script in site.static_files %}{% if script.path contains 'script/classes/secondary' %}		<script type="text/javascript" src="{{ site.baseurl }}{{ script.path }}"></script>
 {% endif %}{% endfor %}{% for script in site.static_files %}{% if script.path contains 'script/modules/' %}		<script type="text/javascript" src="{{ site.baseurl }}{{ script.path }}"></script>
-{% endif %}{% endfor %}		<script type="text/javascript" src="/script/script.js"></script>
+{% endif %}{% endfor %}		<script type="text/javascript" src="/script/init.js"></script>
 	</head>
 	<body class="home">
 		<div class='build-date'><span>Build {{ site.time | date: "%Y-%m-%d" }}</span></div>
