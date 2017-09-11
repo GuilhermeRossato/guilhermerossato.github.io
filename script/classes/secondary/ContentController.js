@@ -40,6 +40,8 @@ class ContentController {
 	dispatchEvent(type, ...data) {
 		if (type === "error") {
 			console.warn(...data);
+		} else {
+			console.warn("Unhandled event dispatch: ", ...data);
 		}
 	}
 }
