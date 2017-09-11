@@ -1,6 +1,6 @@
 class GitRequest {
 	constructor() {
-		this.baseUrl = 'http://api.github.com.br';
+		this.baseUrl = 'http://api.github.com';
 		this.user = 'GuilhermeRossato';
 		this.headers = [{
 			name: 'Accept',
@@ -24,12 +24,13 @@ class GitRequest {
 		} else {
 			this.waiting = true;
 			var xhr = new XMLHttpRequest();
+			console.log("Dispatched: ", this.url);
+			xhr.open('GET', this.url);
 			this.headers.forEach(header => {
 				xhr.setRequestHeader(header.name, header.value);
 			});
 			xhr.onload = (ev) => this.handleHttpReturn(ev, "success");
 			xhr.onerror = (ev) => this.handleHttpReturn(ev, "error");
-			xhr.open('GET', this.url);
 		}
 		return this;
 	}
