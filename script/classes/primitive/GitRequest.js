@@ -1,6 +1,6 @@
 class GitRequest {
 	constructor() {
-		this.baseUrl = 'http://api.github.com';
+		this.baseUrl = 'https://api.github.com';
 		this.user = 'GuilhermeRossato';
 		this.headers = [{
 			name: 'Accept',
@@ -11,10 +11,20 @@ class GitRequest {
 		}];
 		this.callbacks = {};
 	}
-	handleHttpReturn(response, eventType) {
-		this.response = response;
-		this.error = (eventType == "error");
-		this.waiting = false;
+	handleHttpReturn(response, eventType, status) {
+		if (status !== 200) {
+			this.response = response;
+			this.error = (eventType == "error");
+			this.waiting = false;
+		} else {
+			if (this.retryCount) {
+				this.retryCount++;
+			} else {
+				this.retryCount = 1;
+			}
+			console.log("Retrying due to invalid response to:",this.url);
+			setTimeout(this.dispatch.bind(this), Settings['requests']['delay_after_fail_seconds']*1000);
+		}
 	}
 	dispatch() {
 		if (this.waiting) {
@@ -22,15 +32,21 @@ class GitRequest {
 				this.dispatchEvent("error", "Unable to dispatch, still waiting last request");
 			}, 1);
 		} else {
+			console.log("Dispatching: ", this.url);
 			this.waiting = true;
 			var xhr = new XMLHttpRequest();
-			console.log("Dispatched: ", this.url);
+			xhr.onload = (ev) => this.handleHttpReturn(ev, "success", xhr.status);
+			xhr.onerror = (ev) => this.handleHttpReturn(ev, "error", xhr.status);
+			xhr.onreadystatechange = (function(ev) {
+				if(this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+				    console.log("response ", this.responseText);
+				}
+			}).bind(xhr);
 			xhr.open('GET', this.url);
 			this.headers.forEach(header => {
 				xhr.setRequestHeader(header.name, header.value);
 			});
-			xhr.onload = (ev) => this.handleHttpReturn(ev, "success");
-			xhr.onerror = (ev) => this.handleHttpReturn(ev, "error");
+			xhr.send();
 		}
 		return this;
 	}
