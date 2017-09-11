@@ -1,5 +1,7 @@
 class GitRequest {
 	constructor() {
+		this.baseUrl = 'http://api.github.com.br';
+		this.user = 'GuilhermeRossato';
 		this.headers = [{
 			name: 'Accept',
 			value: 'application/vnd.github.v3.raw+json',

@@ -1,7 +1,5 @@
 class RequestSystem {
 	constructor () {
-		this.url = 'http://api.github.com.br';
-		this.user = 'GuilhermeRossato';
 		this.requests = [];
 		this.addRequestsFromSettings();
 	}

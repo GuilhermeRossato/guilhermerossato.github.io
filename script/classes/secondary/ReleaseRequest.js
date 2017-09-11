@@ -5,13 +5,13 @@ class ReleaseRequest extends GitRequest {
 	}
 	dispatch() {
 		if (this.user && this.repository) {
-			this.url = `${this.url}/repos/${this.user}/${this.repository}/releases/`;
-			if (this.commit) {
-				this.url += this.commit;
+			this.url = `${this.baseUrl}/repos/${this.user}/${this.repository}/releases/`;
+			if (this.release) {
+				this.url += this.release;
 			}
 			super.dispatch();
 		} else {
-			console.warn("Couldn't dispatch commit request due to missing parameters");
+			console.warn("Couldn't dispatch release request due to missing parameters");
 		}
 		return this;
 	}
