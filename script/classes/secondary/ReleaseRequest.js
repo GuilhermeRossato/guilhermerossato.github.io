@@ -9,7 +9,7 @@ class ReleaseRequest extends GitRequest {
 			if (this.commit) {
 				this.url += this.commit;
 			}
-			super();
+			super.dispatch();
 		} else {
 			console.warn("Couldn't dispatch commit request due to missing parameters");
 		}
@@ -20,6 +20,6 @@ class ReleaseRequest extends GitRequest {
 			console.log("Got an answer for '"+this.repository+"' - Releases");
 			console.log(...data);
 		}
-		return super(type, ...data);
+		return super.dispatchEvent(type, ...data);
 	}
 }

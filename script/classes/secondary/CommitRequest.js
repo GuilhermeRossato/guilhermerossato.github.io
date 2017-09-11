@@ -22,6 +22,6 @@ class CommitRequest extends GitRequest {
 			console.log("Got an answer for '"+this.repository+"' - Commits");
 			console.log(...data);
 		}
-		return super(type, ...data);
+		return super.dispatchEvent(type, ...data);
 	}
 }
