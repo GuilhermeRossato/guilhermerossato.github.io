@@ -5,7 +5,7 @@ class ReleaseRequest extends GitRequest {
 	}
 	dispatch() {
 		if (this.user && this.repository) {
-			this.url = `${this.baseUrl}/repos/${this.user}/${this.repository}/releases/`;
+			this.url = `${this.baseUrl}/users/${this.user}/repos/${this.repository}/releases/`;
 			if (this.release) {
 				this.url += this.release;
 			}

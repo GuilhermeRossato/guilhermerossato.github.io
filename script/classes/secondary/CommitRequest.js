@@ -5,7 +5,7 @@ class CommitRequest extends GitRequest {
 	}
 	dispatch() {
 		if (this.user && this.repository) {
-			this.url = `${this.baseUrl}/repos/${this.user}/${this.repository}/commits/`;
+			this.url = `${this.baseUrl}/users/${this.user}/repos/${this.repository}/commits/`;
 			if (this.commit) {
 				this.url += this.commit;
 			}
