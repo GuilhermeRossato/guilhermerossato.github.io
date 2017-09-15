@@ -1,13 +1,17 @@
 class ElementGroup {
 	constructor() {
 		this.elements = {};
-		this.initElementData();
 		this.generated = false;
 	}
+	static minifyStyle(style) {
+		var mode = 0;
+		return style.replace(/(\r\n|\t|\n|\r)/gm,"").split('').filter((char, index) => (((((mode == 1)&&(mode = 2))||true)&&(((char == ':')&&(mode = 1))||true)&&(char == ';')&&(mode = 0)||true)&&mode == 0)?(char !== ' '):((mode == 2)?((mode = 3)&&(char != ' ')):true)).join('');
+	}
 	_createElementByData(elementName, elementData) {
-		var element = document.createElement(data.type);
+		var element = document.createElement(elementData.tag);
 		var name, value;
 		var parentless = [];
+		element.setAttribute("name", elementName);
 		for (name in elementData) {
 			if (name === "parent") {
 				value = elementData[name];
@@ -16,8 +20,10 @@ class ElementGroup {
 				} else {
 					console.warn(`Element ${elementName} couldn't be assigned to ${name} because the father doesn't exist at the time of creation`);
 				}
-			} else if (name !== "type" && elementData.hasOwnProperty(name)) {
-				value = (name == "style")?(elementData[name].replace(/(\r\n|\n|  *|\r)/gm,"")):(elementData[name]);
+			} else if ((name == "innerText") || (name == "innerHTML")) {
+				element[name] = elementData[name];
+			} else if (name !== "tag" && elementData.hasOwnProperty(name)) {
+				value = (name == "style")?(ElementGroup.minifyStyle(elementData[name])):(elementData[name]);
 				element.setAttribute(name, value);
 			}
 		}
@@ -38,7 +44,7 @@ class ElementGroup {
 		}
 		this.generated = true;
 	}
-	static getElementData() {
+	getElementData() {
 		return {
 			"flex": {
 				type: "div",
@@ -53,7 +59,7 @@ class ElementGroup {
 					margin: 0;
 					padding: 0;
 				`,
-				innerText: "Replace this function!";
+				innerHTML: "<span>Replace this function!</span>"
 			}
 		}
 	}
