@@ -18,6 +18,11 @@ class ContentController {
 		this.requestSystem = new RequestSystem();
 		this.requestSystem.dispatchAllRequests();
 	}
+	askAuth() {
+		this.modal = new ModalWindow();
+		this.modal.show();
+		return this.modal;
+	}
 	getRemainingScroll() {
 		return (document.body.scrollHeight - window.innerHeight - window.scrollY);
 	}

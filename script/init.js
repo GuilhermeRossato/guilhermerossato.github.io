@@ -6,8 +6,12 @@ const App = (function() {
 
 	var contentController = new ContentController();
 
-	var timer = setInterval(contentController.iterate.bind(contentController),1000);
-	contentController.iterate();
+	function onLoad() {
+		var timer = setInterval(contentController.iterate.bind(contentController),1000);
+		contentController.askAuth();
+	}
+
+	window.addEventListener("load", onLoad);
 
 	return {}
 })();
