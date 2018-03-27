@@ -8,7 +8,7 @@ const App = (function() {
 
 	function onLoad() {
 		var timer = setInterval(contentController.iterate.bind(contentController),1000);
-		contentController.askAuth();
+		//contentController.askAuth();
 	}
 
 	window.addEventListener("load", onLoad);
