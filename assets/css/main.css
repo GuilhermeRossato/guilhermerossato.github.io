@@ -201,6 +201,9 @@ article .footer a {
 	header > .title-wrapper h1 {
 		font-size: 3.5em !important;
 	}
+	header > .title-wrapper > h2 {
+		font-size: 2vw;
+	}
 	header > .title-wrapper > h2 > .conditional-part {
 		display: none;
 	}
