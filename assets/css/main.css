@@ -1,3 +1,9 @@
+@font-face {
+	font-family: 'Dinpro';
+	font-style: normal;
+	font-weight: 300;
+	src: local('Dinpro Light'), local('Dinpro-Light'), url('../fonts/Dinpro bold.otf') format('otf');
+}
 body {
 	font-family: 'Roboto', sans-serif;
 	font-size: 16px;
@@ -112,13 +118,10 @@ nav > a[selected] {
 	align-items: center;
 }
 .main-desc > h3 {
-	width: 401px;
-	height: 103px;
-	background: url('./assets/projects-text.png') center center no-repeat no-repeat;
 	font-size: 80px;
-	font-family: sans-serif;
+	font-family: "Dinpro", sans-serif;
 	letter-spacing: 12px;
-	color: transparent;
+	color: #111;
 }
 article {
 	display: flex;
@@ -226,6 +229,9 @@ article .footer a {
 	header > .title-wrapper > h2 {
 		display: block;
 		font-size: 26px;
+	}
+	header > .title-wrapper > h2 > .conditional-part {
+		display: block;
 	}
 }
 .post-loader {
