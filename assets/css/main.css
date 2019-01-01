@@ -43,9 +43,6 @@ nav > a:hover {
 	-ms-flex-wrap: wrap;
 	flex-wrap: wrap;
 }
-h2 > span {
-	padding: 0 0.2em;
-}
 .image-wrapper > * {
 	display: inline-block;
 	vertical-align: middle;
@@ -201,7 +198,7 @@ article .footer a {
 	header > .title-wrapper h1 {
 		font-size: 3.5em !important;
 	}
-	header > .title-wrapper h2 {
+	header > .title-wrapper > h2 > .conditional-part {
 		display: none;
 	}
 	header > .nav-wrapper > nav {
@@ -226,7 +223,7 @@ article .footer a {
 }
 
 @media screen and (min-width: 1226px) {
-	header > .title-wrapper h2 {
+	header > .title-wrapper > h2 {
 		display: block;
 		font-size: 26px;
 	}

@@ -6,23 +6,23 @@
 	background-size: cover;
 }
 .icon[title="HTML5"] {
-	background-image: url("../assets/technologies/html5.png");
+	background-image: url("../technologies/html5.png");
 }
 .icon[title="CSS3"] {
-	background-image: url("../assets/technologies/css3.png");
+	background-image: url("../technologies/css3.png");
 }
 .icon[title="Javascript"] {
-	background-image: url("../assets/technologies/js.png");
+	background-image: url("../technologies/js.png");
 }
 .icon[title="Flexbox"] {
-	background-image: url("../assets/technologies/flexbox.png");
+	background-image: url("../technologies/flexbox.png");
 }
 .icon[title="Github"] {
-	background-image: url("../assets/technologies/github.png");
+	background-image: url("../technologies/github.png");
 }
 .icon[title="Github with Jekyll"] {
-	background-image: url("../assets/technologies/jekyll.png");
+	background-image: url("../technologies/jekyll.png");
 }
 .icon[title="Node"] {
-	background-image: url("../assets/technologies/node.png");
+	background-image: url("../technologies/node.png");
 }
