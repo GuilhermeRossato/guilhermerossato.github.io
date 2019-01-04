@@ -118,7 +118,7 @@ nav > a[selected] {
 	align-items: center;
 }
 .main-desc > h3 {
-	font-size: 80px;
+	font-size: 14vw;
 	font-family: "Dinpro", sans-serif;
 	letter-spacing: 12px;
 	color: #111;
@@ -185,6 +185,9 @@ article .footer a {
 	header {
 		padding: 0 50px;
 	}
+	.main-desc > h3 {
+		font-size: 80px;
+	}
 }
 @media screen and (min-width: 1000px) {
 	header {
@@ -234,7 +237,7 @@ article .footer a {
 		font-size: 26px;
 	}
 	header > .title-wrapper > h2 > .conditional-part {
-		display: block;
+		display: inline;
 	}
 }
 .post-loader {
