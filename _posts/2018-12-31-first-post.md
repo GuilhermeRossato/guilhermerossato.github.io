@@ -1,10 +1,12 @@
 ---
+title: The development of my portofolio website
 layout: default
-author: jill
-title: Created my portofolio website
+author: Guilherme Rossato
+tags: ['HTML5', 'CSS3', 'Javascript', 'Node', 'Flexbox', 'Github with Jekyll']
+permalink: "first-post"
 ---
 
-I have created my very own portofolio website, not my first, but I'm very happy with the results.
+Developed my own portofolio with Jekyll (static website generator) and Node (and Babel). Trying to aim for a minimalist look with some drawings to give the website a little light, at the end i'm very happy with the results.
 
 My path to developing this started by the layout, making a few minimal drawings to experiment with the proportions, then developed it with the help of chrome's dev tools syncronised with my local file system.
 

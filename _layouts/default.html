@@ -3,17 +3,17 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link href="./assets/css/base.css" rel="stylesheet" type="text/css">
-	<link href="./assets/css/tech-icons.css" rel="stylesheet" type="text/css">
-	<link href="./assets/css/roboto.css" rel="stylesheet" type="text/css">
-	<link href="./assets/css/main.css" rel="stylesheet" type="text/css">
+	<link href="{{ site.data.route.host }}assets/css/base.css" rel="stylesheet" type="text/css">
+	<link href="{{ site.data.route.host }}assets/css/tech-icons.css" rel="stylesheet" type="text/css">
+	<link href="{{ site.data.route.host }}assets/css/roboto.css" rel="stylesheet" type="text/css">
+	<link href="{{ site.data.route.host }}assets/css/main.css" rel="stylesheet" type="text/css">
 	<link rel="icon" type="image/x-icon" href="./favicon.ico">
 	<title>Guilherme Rossato - Portofolio</title>
 </head>
 <body>
 	<header>
 		<div class="logo-wrapper">
-			<img class="myself" src="./assets/images/myself.png" alt="my-photo">
+			<img class="myself" src="{{ site.data.route.host }}assets/images/myself.png" alt="my-photo">
 		</div>
 		<div class="title-wrapper">
 			<h1>Guilherme Rossato</h1>
@@ -38,8 +38,8 @@
 		<p class="copyright">© <span class='year'>{{ site.time | date: "%Y" }}</div> Guilherme Rossato. All Rights Reserved.</p>
 	</footer>
 	<!--
-	<script src="./assets/build/index.min.js"></script>
+	<script src="{{ site.data.route.host }}assets/build/index.min.js"></script>
 	-->
-	<script async type="module" src="./assets/js/index.js"></script>
+	<script async type="module" src="{{ site.data.route.host }}assets/js/index.js"></script>
 </body>
 </html>

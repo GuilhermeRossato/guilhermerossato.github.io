@@ -11,12 +11,9 @@ layout: default
 				<p class="text">{{ post.excerpt }}</p>
 				<div class="footer">
 					<div class="tech-list">
-						<a class="tech icon" title="HTML5"></a>
-						<a class="tech icon" title="CSS3"></a>
-						<a class="tech icon" title="Javascript"></a>
-						<a class="tech icon" title="Node"></a>
-						<a class="tech icon" title="Flexbox"></a>
-						<a class="tech icon" title="Github with Jekyll"></a>
+{% for tag in post.tags %}
+						<a class="tech icon" title="{{ tag }}"></a>
+{% endfor %}
 					</div>
 					<a class="read-more">Read more</a>
 				</div>
