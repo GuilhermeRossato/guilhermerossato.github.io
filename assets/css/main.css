@@ -226,7 +226,7 @@ article .footer a {
 	article > .description > .title {
 		font-size: 32px;
 	}
-	article > .description > .text {
+	article > .description > p {
 		font-size: 22px;
 	}
 }
