@@ -11,10 +11,9 @@ permalink: "/api/get-post-list/"
 		"tags": [
 	{%- for tag in post.tags %}
 			"{{ tag | replace: '"', "''" }}",
-	{%- endfor -%}
+{% endfor -%}
 
 		]
 	},
-{%- endfor -%}
-
+{%- endfor %}
 ]
