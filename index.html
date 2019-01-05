@@ -12,9 +12,9 @@ subtitle: Projects
 				{{ post.excerpt }}
 				<div class="footer">
 					<div class="tech-list">
-{% for tag in post.tags %}
-						<a class="tech icon" title="{{ tag }}"></a>
-{% endfor %}
+{%- for tag in post.tags -%}
+						<a class="tech icon" title="{{ tag | replace: """", "''"  }}"></a>
+{%- endfor -%}
 					</div>
 					<a class="read-more">Read more</a>
 				</div>
