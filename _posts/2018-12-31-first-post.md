@@ -1,6 +1,6 @@
 ---
 title: The development of my portofolio website
-layout: default
+layout: post
 author: Guilherme Rossato
 tags: ['HTML5', 'CSS3', 'Javascript', 'Node', 'Flexbox', 'Github with Jekyll']
 permalink: "first-post"
