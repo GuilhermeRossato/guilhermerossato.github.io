@@ -1,0 +1,26 @@
+---
+permalink: "/projects/comteq/"
+destination: "https://gui-rossato.appspot.com/projects/comteq/"
+---
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="refresh" content="0; url={{ page.destination }}" />
+	<title>Redirecionando...</title>
+	<body>
+		<pre>Redirecionando você para o endpoint...</pre>
+		<br />
+		<a id="redirAnchor" style="display:false" href="{{ page.destination }}">Se não for redirecionado imediatamente, clique aqui</a>
+		<script>
+			var destination = "{{ page.destination }}";
+			setTimeout(function() {
+				if (window.redirAnchor) {
+					window.redirAnchor.style.display = "block";
+				}
+				window.location = destination;
+			}, 3000);
+		</script>
+	</body>
+</head>
