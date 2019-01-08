@@ -63,10 +63,6 @@ nav > a:hover {
 	}
 }
 header {
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
 	background: #1f1f1f;
 	z-index: 12;
 	display: flex;
@@ -111,7 +107,6 @@ nav > a[selected] {
 	cursor: text;
 }
 .main-desc {
-	margin-top: 173px;
 	height: 250px;
 	display: flex;
 	justify-content: center;
@@ -219,9 +214,6 @@ article .footer a {
 	header > .logo-wrapper {
 		height: 100px;
 		transform: translateY(-16px);
-	}
-	.main-desc {
-		margin-top: 100px;
 	}
 	article > .description > .title {
 		font-size: 32px;
