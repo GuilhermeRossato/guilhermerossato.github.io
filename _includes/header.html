@@ -19,7 +19,7 @@
 		<div class="title-wrapper">
 			<h1>Guilherme Rossato</h1>
 			<h2 class="sub-title main">Desenvolvedor <span class="conditional-part">Fullstack</span></h2>
-			<h2 class="sub-title substitute" style="display: none"></h2>
+			<h2 class="sub-title substitute" style="position: absolute;display: none"></h2>
 		</div>
 		<script>
 			function wait(ms = 100) {
@@ -30,13 +30,13 @@
 					return false;
 				}
 				window.changingSubTitle = true;
-				var main = window.querySelector(".subtitle.main");
-				var alt = window.querySelector(".subtitle.substitute");
+				var main = document.querySelector(".sub-title.main");
+				var alt = document.querySelector(".sub-title.substitute");
 				var rect = main.getBoundingClientRect();
-				alt.style.position = "absolute";
+				main.style.position = alt.style.position = "absolute";
 				alt.style.display = "block";
-				alt.style.top = rect.y+"px";
-				alt.style.left = rect.x+"px";
+				main.style.top = alt.style.top = rect.y+"px";
+				main.style.left = alt.style.left = rect.x+"px";
 				main.style.transition = "0.7s opacity ease-in-out";
 				alt.style.transition = "0.7s opacity ease-in-out";
 				alt.innerHTML = "";
@@ -50,7 +50,6 @@
 				alt.style.transition = "";
 				main.style.opacity = "1";
 				alt.style.opacity = "0";
-				alt.style.display = "none";
 				window.changingSubTitle = false;
 			}
 			setTimeout(replaceSubTitle.bind(this, "BI Analista"), 10000);
