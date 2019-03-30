@@ -13,17 +13,17 @@ subtitle: Projects
 			<section class="description">
 				<h3 class="title" data-path="{{ post.path }}">{{ post.title }}</h3>
 				<div class="excerpt">
-					{{- if post.summary = blank -}}
-						{{- if post.summary = "" -}}
-							<div class="first">{{- post.excerpt -}}</div>
+					{{- if post.summary == blank -}}
+						{{- if post.summary == "" -}}
+							<p class="excerpt variant-0">{{- post.excerpt | strip_html -}}</p>
 						{{- else -}}
-							<p class="second">{{- post.summary -}}</p>
+							<p class="summary variant-1">{{- post.summary | strip_html -}}</p>
 						{{ endif }}
 					{{- else -}}
-						{{- if post.summary = "" -}}
-							<p class="third">{{- post.summary -}}</p>
+						{{- if post.summary == "" -}}
+							<p class="summary variant-2">{{- post.summary | strip_html -}}</p>
 						{{- else -}}
-							<p class="fourth">{{- post.summary -}}</p>
+							<p class="summary variant-3">{{- post.summary | strip_html -}}</p>
 						{{ endif }}
 					{{- endif -}}
 				</div>
