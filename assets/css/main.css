@@ -122,6 +122,7 @@ nav > a[selected] {
 	letter-spacing: 12px;
 	color: #111;
 }
+
 article {
 	display: flex;
 	margin: 25px 0;
@@ -183,6 +184,9 @@ article .footer a {
 @media screen and (min-width: 600px) {
 	header {
 		padding: 0 50px;
+	}
+	.main-desc {
+		height: 150px;
 	}
 	.main-desc > h3 {
 		font-size: 80px;

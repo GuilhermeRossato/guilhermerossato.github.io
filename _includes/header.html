@@ -18,8 +18,10 @@
 		</div>
 		<div class="title-wrapper">
 			<h1>Guilherme Rossato</h1>
-			<h2 class="sub-title main">Desenvolvedor <span class="conditional-part">Fullstack</span></h2>
-			<h2 class="sub-title substitute" style="position: absolute;display: none"></h2>
+			<div class="sub-title-wrapper">
+				<h2 class="sub-title main">Desenvolvedor <span class="conditional-part">Fullstack</span></h2>
+				<h2 class="sub-title substitute" style="position: absolute;display: none"></h2>
+			</div>
 		</div>
 		<script>
 			function wait(ms = 100) {
@@ -52,8 +54,18 @@
 				alt.style.opacity = "0";
 				window.changingSubTitle = false;
 			}
-			setTimeout(replaceSubTitle.bind(this, "BI Analista"), 10000);
-			setTimeout(replaceSubTitle.bind(this, "Desenvolvedor Fullstack"), 20000);
+
+			window.addEventListener("load", function() {
+				var titles = ["Desenvolvedor Fullstack", "Analista de BI", "Cloud Developer"];
+				var index = 0;
+				setInterval(function() {
+					index++;
+					if (index >= titles.length) {
+						index = 0;
+					}
+					replaceSubTitle(titles[index]);
+				}, 10000);
+			});
 		</script>
 		<div class="nav-wrapper">
 {% include navigation.html %}
