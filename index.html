@@ -15,7 +15,7 @@ subtitle: Projects
 				<div class="excerpt">
 					{{- if post.summary == blank -}}
 						{{- if post.summary == "" -}}
-							<p class="excerpt variant-0">{{- post.excerpt | strip_html -}}</p>
+							<p class="excerpt variant-0">{{- post.summary | strip_html -}}</p>
 						{{- else -}}
 							<p class="summary variant-1">{{- post.summary | strip_html -}}</p>
 						{{ endif }}
