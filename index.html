@@ -11,12 +11,12 @@ subtitle: Projects
 				<img src="./assets/images/cabin.jpg">
 			</a>
 			<section class="description">
-				<h3 class="title">{{ post.title }}</h3>
+				<h3 class="title" data-path="{{ post.path }}">{{ post.title }}</h3>
 				<div class="excerpt">
 					{{- if post.summary = blank -}}
 						{{- post.excerpt -}}
 					{{- else -}}
-						{{- post.summary -}}
+						<p>{{- post.summary -}}</p>
 					{{- endif  -}}
 				</div>
 				<div class="footer">
