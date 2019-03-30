@@ -2,7 +2,10 @@
 layout: default
 subtitle: Projects
 ---
-{% for post in site.posts %}
+{%- for post in site.posts %}
+	{% if post.lang == 'pt-br' %}
+		{% continue %}
+	{% endif %}
 		<article>
 			<a href="{{ post.url }}" class="image-wrapper">
 				<img src="./assets/images/cabin.jpg">
@@ -20,4 +23,4 @@ subtitle: Projects
 				</div>
 			</section>
 		</article>
-{% endfor %}
+{% endfor -%}

@@ -4,6 +4,7 @@ layout: post
 author: Guilherme Rossato
 tags: ['HTML5', 'CSS3', 'Javascript', 'Node', 'Flexbox', 'Github with Jekyll']
 permalink: "first-post"
+language: "en-us"
 ---
 
 Developed my own portofolio with Jekyll (static website generator) and Node (and Babel). Trying to aim for a minimalist look with some drawings to give the website a little light, at the end i'm very happy with the results.
