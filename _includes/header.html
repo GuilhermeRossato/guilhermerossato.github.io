@@ -18,10 +18,43 @@
 		</div>
 		<div class="title-wrapper">
 			<h1>Guilherme Rossato</h1>
-			<h2>Fullstack dev<span class="conditional-part">eloper</span></h2>
-			<h2 class="substitute" style="display: none"></h2>
+			<h2 class="sub-title main">Desenvolvedor <span class="conditional-part">Fullstack</span></h2>
+			<h2 class="sub-title substitute" style="display: none"></h2>
 		</div>
 		<script>
+			function wait(ms = 100) {
+				return new Promise(resolve => setTimeout(resolve, ms));
+			}
+			async function replaceSubTitle(newSubTitle) {
+				if (window.changingSubTitle) {
+					return false;
+				}
+				window.changingSubTitle = true;
+				var main = window.querySelector(".subtitle.main");
+				var alt = window.querySelector(".subtitle.substitute");
+				var rect = main.getBoundingClientRect();
+				alt.style.position = "absolute";
+				alt.style.display = "block";
+				alt.style.top = rect.y+"px";
+				alt.style.left = rect.x+"px";
+				main.style.transition = "0.7s opacity ease-in-out";
+				alt.style.transition = "0.7s opacity ease-in-out";
+				alt.innerHTML = "";
+				alt.innerText = newSubTitle;
+				await wait(50);
+				main.style.opacity = "0";
+				alt.style.opacity = "1";
+				await wait(700);
+				main.innerHTML = newSubTitle;
+				main.style.transition = "";
+				alt.style.transition = "";
+				main.style.opacity = "1";
+				alt.style.opacity = "0";
+				alt.style.display = "none";
+				window.changingSubTitle = false;
+			}
+			setTimeout(replaceSubTitle.bind(this, "BI Analista"), 10000);
+			setTimeout(replaceSubTitle.bind(this, "Desenvolvedor Fullstack"), 20000);
 		</script>
 		<div class="nav-wrapper">
 {% include navigation.html %}

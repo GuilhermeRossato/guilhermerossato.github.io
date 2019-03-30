@@ -8,12 +8,12 @@ permalink: "/api/get-post-list/"
 		"index": {{ forloop.index0 }},
 		"title": "{{ post.title | escape | replace: '"', "''" }}",
 		"date": "{{ post.date }}",
-		"language": "{{ post.lang }}",
-		"layout": "{{ post.layout }}",
+		"language": "{{ post.lang | jsonify }}",
+		"layout": "{{ post.layout | jsonify }}",
 		"summary": "{{ post.summary | jsonify }}",
 		"excerpt": "{{ post.excerpt | strip_html }}",
-		"path": "{{ post.path }}",
-		"url": "{{ post.url",
+		"path": "{{ post.path | jsonify }}",
+		"url": "{{ post.url | jsonify }}",
 		"tags": ["{{ post.tags | join: '", "' }}"]
 	},
 {%- endfor %}
