@@ -75,7 +75,6 @@ header {
 }
 header > .logo-wrapper img {
 	width: 100px;
-	border: 3px solid #444;
 	border-radius: 100%;
 }
 header > .title-wrapper {
@@ -220,18 +219,24 @@ article .footer a {
 	}
 	header > .logo-wrapper {
 		transform: translateY(-15px);
+		height: 100px;
 	}
 	header > .logo-wrapper img {
-		height: 100px;
-		border: 3px solid #444;
+		border: 2px solid #444;
 		border-radius: 100%;
-		box-shadow: inset 0px 0px 70px rgba(255, 255, 255, 0.9);
+		box-shadow: inset 0px 0px 20px #ffffff;
+		background-color: rgba(255,255,255,0.6);
 	}
 	article > .description > .title {
 		font-size: 32px;
 	}
 	article > .description > p {
 		font-size: 22px;
+	}
+	.sub-title-wrapper {
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 }
 
