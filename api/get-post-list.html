@@ -11,7 +11,7 @@ permalink: "/api/get-post-list/"
 		"language": "{{ post.lang }}",
 		"layout": "{{ post.layout }}",
 		"summary": "{{ post.summary }}",
-		"excerpt": "{{ post.excerpt }}",
+		"excerpt": "{{ post.excerpt | strip_html }}",
 		"path": "{{ post.path }}",
 		"url": "{{ post.url",
 		"tags": ["{{ post.tags | join: '", "' }}"]
