@@ -6,14 +6,14 @@ subtitle: Projects
 	{%- if post.lang == 'en-us' -%}
 		{%- continue -%}
 	{%- endif %}
-		<article data-index="{{ forloop.index0 }}">
+		<article data-index="{{ forloop.index0 }}" data-language="{{ post.lang }}">
 			<a href="{{ post.url }}" class="image-wrapper">
 				<img src="./assets/images/cabin.jpg">
 			</a>
 			<section class="description">
 				<h3 class="title" data-path="{{ post.path }}">{{ post.title }}</h3>
 				<div class="excerpt">
-					<p class="excerpt">{% if post.summary %}{{ post.summary }}{% else %}{{ post.title | strip_html }}{% endif %}</p>
+					<p class="excerpt">{% if post.summary %}{{ post.summary }}{% else %}{{ post.excerpt | strip_html }}{% endif %}</p>
 				</div>
 				<div class="footer">
 					<div class="tech-list">
