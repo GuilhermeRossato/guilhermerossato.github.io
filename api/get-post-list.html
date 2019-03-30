@@ -7,6 +7,8 @@ permalink: "/api/get-post-list/"
 	{
 		"title": "{{ post.title | escape | replace: '"', "''" }}",
 		"date": "{{ post.date }}",
+		"language": "{{ post.lang }}",
+		"layout": "{{ post.layout }}",
 		"url": "{{ post.url | replace: '"', "''" }}",
 		"tags": ["{{ post.tags | join: '", "' }}"]
 	},

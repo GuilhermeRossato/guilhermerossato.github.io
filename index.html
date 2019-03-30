@@ -6,6 +6,9 @@ subtitle: Projects
 	{% if post.lang == 'pt-br' %}
 		{% continue %}
 	{% endif %}
+	{% if post.lang == pt-br %}
+		{% continue %}
+	{% endif %}
 		<article>
 			<a href="{{ post.url }}" class="image-wrapper">
 				<img src="./assets/images/cabin.jpg">
@@ -15,7 +18,7 @@ subtitle: Projects
 				<div class="excerpt">
 					{{- if post.summary = blank -}}
 						{{- if post.summary = "" -}}
-							<p class="first">{{- post.summary -}}</p>
+							<div class="first">{{- post.excerpt -}}</div>
 						{{- else -}}
 							<p class="second">{{- post.summary -}}</p>
 						{{ endif }}
