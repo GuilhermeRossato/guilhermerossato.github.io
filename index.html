@@ -15,9 +15,10 @@ subtitle: Projects
 				<div class="excerpt">
 					{{- if post.summary == "" and post.summary == blank -}}
 						<p class="excerpt variant-0">{{- post.summary | strip_html -}}</p>
-					{{- else -}}
+					{{- endif -}}
+					{{- if unless post.summary == "" and post.summary == blank -}}
 						<p class="summary variant-1">{{- post.summary | strip_html -}}</p>
-					{{ endif }}
+					{{- endif -}}
 				</div>
 				<div class="footer">
 					<div class="tech-list">
