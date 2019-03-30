@@ -127,12 +127,15 @@ nav > a[selected] {
 article {
 	display: flex;
 	margin: 25px 0;
+	max-width:100%;
+	overflow: hidden;
 }
 article > .description {
 	margin: 0 0 0 20px;
 	display: flex;
 	flex-direction: column;
 	justify-content: stretch;
+	max-width:100%;
 }
 article:nth-child(odd) > .image-wrapper {
 	order: 2;
