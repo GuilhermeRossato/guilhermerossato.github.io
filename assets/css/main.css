@@ -56,6 +56,7 @@ nav > a:hover {
 	-webkit-box-shadow: 10px 10px 28px 0 rgba(0,0,0,.1);
 	box-shadow: 10px 10px 28px 0 rgba(0,0,0,.1);
 	max-width: 100%;
+	max-height: 150px;
 }
 @media only screen and (min-width: 355px) {
 	nav > a {
@@ -242,14 +243,14 @@ article .footer a {
 	align-items: center;
 }
 @keyframes rotate {
-	from { transform: rotate(0deg) }
-	to { transform: rotate(360deg) }
+	from { transform: rotate(0deg) scale(0.9); }
+	to { transform: rotate(360deg) scale(0.9); }
 }
 #spinning {
 	width: 50px;
 	height: 50px;
-	border: 3px solid transparent;
-	border-top: 3px solid #444;
+	border: 4px solid transparent;
+	border-top: 4px solid #444;
 	border-radius: 50%;
 	animation: rotate 1.5s infinite linear;
 	margin-right: 25px;
