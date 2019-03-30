@@ -14,10 +14,18 @@ subtitle: Projects
 				<h3 class="title" data-path="{{ post.path }}">{{ post.title }}</h3>
 				<div class="excerpt">
 					{{- if post.summary = blank -}}
-						{{- post.excerpt -}}
+						{{- if post.summary = "" -}}
+							<p class="first">{{- post.summary -}}</p>
+						{{- else -}}
+							<p class="second">{{- post.summary -}}</p>
+						{{ endif }}
 					{{- else -}}
-						<p>{{- post.summary -}}</p>
-					{{- endif  -}}
+						{{- if post.summary = "" -}}
+							<p class="third">{{- post.summary -}}</p>
+						{{- else -}}
+							<p class="fourth">{{- post.summary -}}</p>
+						{{ endif }}
+					{{- endif -}}
 				</div>
 				<div class="footer">
 					<div class="tech-list">
