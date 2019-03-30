@@ -7,7 +7,7 @@ language: pt-br
 summary: Desenvolvi um web-app (mobile) para fazer cálculos relacionados a propostas de salário para facilitar a vida
 ---
 
-[Clique aqui se você só deseja ver o app desenvolvido](/projects/calculadora-de-salario/)
+[Clique aqui se você só deseja ver o app desenvolvido](/projects/calculadora-de-salario/).
 
 # Motivação
 
