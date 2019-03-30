@@ -6,7 +6,7 @@ subtitle: Projects
 	{%- if post.lang == 'en-us' -%}
 		{%- continue -%}
 	{%- endif %}
-		<article data-index="{{ forloop.index0 }}" data-language="{{ post.lang }}">
+		<article data-index="{{ forloop.index0 }}" data-language="{{ post.lang }}" data-path="{{ post.path }}">
 			<a href="{{ post.url }}" class="image-wrapper">
 				<img src="./assets/images/cabin.jpg">
 			</a>

@@ -5,12 +5,15 @@ permalink: "/api/get-post-list/"
 [
 {%- for post in site.posts %}
 	{
+		"index": {{ forloop.index0 }},
 		"title": "{{ post.title | escape | replace: '"', "''" }}",
 		"date": "{{ post.date }}",
-		"language": "{{ post.lang }}",
-		"layout": "{{ post.layout }}",
-		"summary": "{{ post.summary }}",
-		"url": "{{ post.url | replace: '"', "''" }}",
+		"language": "{{ post.lang | jsonify }}",
+		"layout": "{{ post.layout | jsonify }}",
+		"summary": "{{ post.summary | jsonify }}",
+		"excerpt": "{{ post.excerpt | strip_html }}",
+		"path": "{{ post.path | jsonify }}",
+		"url": "{{ post.url | jsonify",
 		"tags": ["{{ post.tags | join: '", "' }}"]
 	},
 {%- endfor %}
