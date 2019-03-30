@@ -6,26 +6,18 @@ subtitle: Projects
 	{%- if post.lang == 'en-us' -%}
 		{%- continue -%}
 	{%- endif %}
-		<article>
+		<article data-index="{{ forloop.index0 }}">
 			<a href="{{ post.url }}" class="image-wrapper">
 				<img src="./assets/images/cabin.jpg">
 			</a>
 			<section class="description">
 				<h3 class="title" data-path="{{ post.path }}">{{ post.title }}</h3>
 				<div class="excerpt">
-					{{- if post.summary == blank -}}
-						{{- if post.summary == "" -}}
-							<p class="excerpt variant-0">{{- post.summary | strip_html -}}</p>
-						{{- else -}}
-							<p class="summary variant-1">{{- post.summary | strip_html -}}</p>
-						{{ endif }}
+					{{- if post.summary == "" or post.summary == blank -}}
+						<p class="excerpt variant-0">{{- post.summary | strip_html -}}</p>
 					{{- else -}}
-						{{- if post.summary == "" -}}
-							<p class="summary variant-2">{{- post.summary | strip_html -}}</p>
-						{{- else -}}
-							<p class="summary variant-3">{{- post.summary | strip_html -}}</p>
-						{{ endif }}
-					{{- endif -}}
+						<p class="summary variant-1">{{- post.summary | strip_html -}}</p>
+					{{ endif }}
 				</div>
 				<div class="footer">
 					<div class="tech-list">

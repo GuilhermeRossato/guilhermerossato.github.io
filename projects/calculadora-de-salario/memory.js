@@ -31,7 +31,6 @@ function set_memory_for_element(elementName, value, specificTab = -1) {
 	var prefix = get_tab_prefix(specificTab);
 	//console.log("wrting to '"+prefix+"-input-value-"+elementName.toLowerCase()+"'", value);
 	localStorage.setItem(prefix+"-input-value-"+elementName.toLowerCase(), value);
-	console.log(localStorage.getItem(prefix+"-input-value-"+elementName.toLowerCase()))
 }
 
 function get_memory_for_element(elementName, specificTab = -1) {
