@@ -5,6 +5,6 @@ markdown: redcarpet
 collections:
   blog:
     output: true
-    permalink: /posts/:title//
+    permalink: /posts/:title/
 gems:
   - jekyll-redirect-from
