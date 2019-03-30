@@ -1,9 +1,10 @@
 <html>
 <head>
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
-<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
-<script src="memory.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+	<link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
+	<script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+	<script src="memory.js"></script>
 <script>
 	function getInput(name) {
 		return document.querySelector('input[name="'+name+'"]');
@@ -70,20 +71,227 @@
 	input[readonly].mdl-textfield__input ~ label.mdl-textfield__label, input[readonly].mdl-textfield__input.is-dirty ~ label.mdl-textfield__label {
 		color: rgb(55, 134, 45);
 	}
+	.mdl-layout__header .mdl-layout__drawer-button {
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
+	.mdl-layout__drawer .mdl-navigation .mdl-navigation__link.selected {
+		pointer-events: none;
+		color: #3b3b3b;
+	}
+	@media screen and (min-width: 900px) {
+		.page-content {
+			padding:50px 0;
+		}
+	}
 </style>
+<script>
+	function change_tab(index) {
+		console.log("changed tab ", index);
+		window.currentTab = index;
+		localStorage.setItem("last-selected-tab", window.currentTab);
+		load_all_inputs();
+
+		var navs = document.querySelectorAll(".mdl-navigation");
+		navs.forEach(function(nav) {
+			if (!nav.children.forEach) {
+				nav.children.forEach = Array.prototype.forEach;
+			}
+			nav.children.forEach((tabElement, tabIndex) => {
+				if (tabIndex == window.currentTab) {
+					tabElement.classList.add("selected");
+				} else {
+					tabElement.classList.remove("selected");
+				}
+			});
+		});
+
+		var canDelete = (window.currentTab === window.tabList.length-1 && window.tabList.length > 1);
+		document.querySelector(".delete-proposta-btn").style.display = canDelete?"block":"none";
+	}
+	function add_new_tab() {
+		console.log("added tab ");
+		var defaultName = "Nova Proposta";
+		window.tabList.push(defaultName);
+		add_tab_navigation_link(defaultName);
+		set_memory_for_element("nome-da-proposta", defaultName, window.tabList.length-1);
+		change_tab(window.tabList.length-1);
+	}
+	function get_tab_name(index) {
+		var name = get_memory_for_element("nome-da-proposta", index);
+		if (!name && index === 0) {
+			return "Proposta Principal";
+		}
+		if (!name) {
+			return false;
+		}
+		return name;
+	}
+	function get_tab_list() {
+		var result = [];
+		var index = 0;
+		while (get_tab_name(index)) {
+			result.push(get_tab_name(index));
+			index++;
+		}
+		return result;
+	}
+	function add_tab_navigation_link(elements) {
+		var navs = document.querySelectorAll(".mdl-navigation");
+		if (!(elements instanceof Array)) {
+			elements = [elements];
+		}
+		navs.forEach(function(nav) {
+			var child = nav.lastElementChild;
+			elements.forEach(function(tabName, tabIndex) {
+				var node = document.createElement("a");
+				node.setAttribute("class", "mdl-navigation__link"+(tabIndex == window.currentTab?" selected":""));
+				node.setAttribute("href", "#");
+				node.setAttribute("ondragstart", "event.preventDefault(); return false;");
+				node.setAttribute("ondrop", "event.preventDefault(); return false;");
+				node.setAttribute("onclick", "return on_change_tab_press.call(this, event)");
+				node.setAttribute("data-index", tabIndex.toString());
+				node.innerText = tabName;
+				nav.insertBefore(node, child);
+			});
+		});
+	}
+	window.addEventListener("load", function() {
+		window.tabList = get_tab_list();
+		add_tab_navigation_link(window.tabList);
+		change_tab(window.currentTab)
+	});
+
+	function on_add_new_tab_press(event) {
+		event.preventDefault();
+		add_new_tab();
+		return false;
+	}
+
+	function on_current_tab_name_input_change(newName) {
+		var navs = document.querySelectorAll(".mdl-navigation");
+		navs.forEach(function(nav) {
+			if (!nav.children.forEach) {
+				nav.children.forEach = Array.prototype.forEach;
+			}
+			nav.children.forEach((tabElement, tabIndex) => {
+				if (tabIndex == window.currentTab) {
+					tabElement.innerText = newName;
+					window.tabList[tabIndex] = newName;
+				}
+			});
+		});
+	}
+
+	function on_change_tab_press(event) {
+		event.preventDefault();
+		var index = 0;
+		var element;
+		if (this instanceof HTMLAnchorElement) {
+			element = this;
+		}
+		if (event.target instanceof HTMLAnchorElement) {
+			element = event.target;
+		}
+		if (!(element instanceof HTMLAnchorElement)) {
+			console.warn("Could not find anchor element");
+			return false;
+		}
+
+		var parentChildren = element.parentNode.children;
+
+		for (index = 0 ; index < parentChildren.length; index++) {
+			if (element === parentChildren[index]) {
+				break;
+			}
+		}
+		if (isNaN(index)) {
+			return false;
+		}
+		change_tab(index);
+		return false;
+	}
+	function on_delete_tab_click(event) {
+		event.preventDefault();
+		if (window.tabList.length <= 1) {
+			alert("Não é possível deletar esta proposta porque ela é a única");
+		} else if (confirm("Tem certeza que deseja remover a ultima proposta ("+window.tabList[window.tabList.length-1]+")?")) {
+			window.currentTab = window.tabList.length-1;
+			clear_memory_for_element("nome-da-proposta");
+			window.tabList.pop();
+			var navs = document.querySelectorAll(".mdl-navigation");
+			navs.forEach(function(nav) {
+				if (!nav.children.forEach) {
+					nav.children.forEach = Array.prototype.forEach;
+				}
+				nav.children.forEach((tabElement, tabIndex) => {
+					if (tabIndex == window.currentTab) {
+						tabElement.remove();
+					}
+				});
+			});
+			change_tab(window.currentTab-1);
+
+		}
+		return false;
+	}
+	function clear_everything() {
+		document.querySelectorAll('input[type="text"]').forEach(function(element) {
+			var elementName = element.getAttribute("name");
+			window.tabList.forEach((tabName, tabIndex) => {
+				set_memory_for_element(elementName, "", tabIndex);
+			});
+		});
+	}
+</script>
 </head>
 <body>
 	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 		<header class="mdl-layout__header mdl-layout__header--scroll">
-			<div class="mdl-layout__header-row" style="padding-left:40px">
+			<div class="mdl-layout__header-row">
 				<span class="mdl-layout-title">Calculador de Salário</span>
+				<div class="mdl-layout-spacer"></div>
+				<nav class="mdl-navigation mdl-layout--large-screen-only" style="max-width: 70%;white-space: nowrap;overflow-y: hidden;overflow-x: auto;">
+					<a class="mdl-navigation__link" href="#" ondragstart="event.preventDefault(); return false;" ondrop="event.preventDefault(); return false;" onclick="event.preventDefault(); return false;">
+						<button class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored mdl-js-ripple-effect" onclick="on_add_new_tab_press(event)" ondragstart="event.preventDefault(); return false;" ondrop="event.preventDefault(); return false;">
+							<i class="material-icons">add</i>
+						</button>
+					</a>
+				</nav>
 			</div>
 		</header>
+		<div class="mdl-layout__drawer">
+			<span class="mdl-layout-title">Calculador de Salário</span>
+			<nav class="mdl-navigation">
+				<a style="background-color: rgb(250, 250, 250)" class="mdl-navigation__link" href="#" ondragstart="event.preventDefault(); return false;" ondrop="event.preventDefault(); return false;" onclick="event.preventDefault(); return false;">
+					<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect" onclick="on_add_new_tab_press(event)" ondragstart="event.preventDefault(); return false;" ondrop="event.preventDefault(); return false;">
+						Nova Proposta
+					</button>
+					<button style="margin-top:5px" class="mdl-button mdl-js-button mdl-button--raised  mdl-button--accent mdl-js-ripple-effect" onclick="event.preventDefault(); (confirm('Tem certeza que deseja remover todas as abas e os numeros que colocou e limpar tudo?') && ([clear_everything(),window.location.reload()]));" ondragstart="event.preventDefault(); return false;" ondrop="event.preventDefault(); return false;">
+						Remover Todas
+					</button>
+					<button style="margin-top:5px" class="mdl-button mdl-js-button mdl-button--raised  mdl-button--accent mdl-js-ripple-effect" onclick="on_delete_tab_click(event)" ondragstart="event.preventDefault(); return false;" ondrop="event.preventDefault(); return false;">
+						Remover Ultima
+					</button>
+				</a>
+			</nav>
+		</div>
 		<main class="mdl-layout__content">
-			<div class="page-content" style="display:flex; justify-content:center; padding:50px 0;">
+			<div class="page-content" style="display:flex; justify-content:center;">
 				<div class="demo-card-wide mdl-card mdl-shadow--2dp">
 					<form action="#" class="mdl-card__supporting-text">
 						<div class="mdl-grid">
+							<div class="mdl-cell mdl-cell--12-col">
+								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+									<input class="mdl-textfield__input" type="text" name="nome-da-proposta" id="nome-da-proposta" value="Proposta Principal" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+									<label class="mdl-textfield__label" for="nome-da-proposta">Nome da Proposta</label>
+									<span class="mdl-textfield__error">Valor inválido</span>
+								</div>
+								<button style="float: right" class="delete-proposta-btn mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab mdl-button--colored mdl-js-ripple-effect" onclick="on_delete_tab_click(event)" ondragstart="event.preventDefault(); return false;" ondrop="event.preventDefault(); return false;">
+									<i class="material-icons">delete</i>
+								</button>
+							</div>
 							<div class="mdl-cell mdl-cell--12-col">
 								<h4 class="title">Horas de Trabalho</h4>
 							</div>
@@ -333,28 +541,28 @@
 							</div>
 							<div class="mdl-cell mdl-cell--12-col">
 								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-									<input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" name="extra-final-por-ano" id="extra-final-por-ano" value="0">
+									<input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" name="extra-final-por-ano" id="extra-final-por-ano" default-value="0" value="0">
 									<label class="mdl-textfield__label" for="extra-final-por-ano">Extra salarial por ano</label>
 									<span class="mdl-textfield__error">Valor inválido</span>
 								</div>
 							</div>
 							<div class="mdl-cell mdl-cell--12-col">
 								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-									<input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" name="extra-final-por-mes" id="extra-final-por-mes" value="0">
+									<input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" name="extra-final-por-mes" id="extra-final-por-mes" default-value="0" value="0">
 									<label class="mdl-textfield__label" for="extra-final-por-mes">Extra salarial por mes</label>
 									<span class="mdl-textfield__error">Valor inválido</span>
 								</div>
 							</div>
 							<div class="mdl-cell mdl-cell--12-col">
 								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-									<input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" name="extra-final-por-dia" id="extra-final-por-dia" value="0">
+									<input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" name="extra-final-por-dia" id="extra-final-por-dia" default-value="0" value="0">
 									<label class="mdl-textfield__label" for="extra-final-por-dia">Extra salarial por dia trabalhado</label>
 									<span class="mdl-textfield__error">Valor inválido</span>
 								</div>
 							</div>
 							<div class="mdl-cell mdl-cell--12-col">
 								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-									<input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" name="extra-acumulado-por-ano" id="extra-acumulado-por-ano" value="0" readonly="readonly">
+									<input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" name="extra-acumulado-por-ano" id="extra-acumulado-por-ano" default-value="0" value="0" readonly="readonly">
 									<label class="mdl-textfield__label" for="extra-acumulado-por-ano">Extra acumulado por ano</label>
 									<span class="mdl-textfield__error">Valor inválido</span>
 								</div>
@@ -382,28 +590,28 @@
 							</div>
 							<div class="mdl-cell mdl-cell--12-col">
 								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-									<input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" name="gasto-final-por-ano" id="gasto-final-por-ano" value="0">
+									<input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" name="gasto-final-por-ano" id="gasto-final-por-ano" default-value="0" value="0">
 									<label class="mdl-textfield__label" for="gasto-final-por-ano">Gasto anual</label>
 									<span class="mdl-textfield__error">Valor inválido</span>
 								</div>
 							</div>
 							<div class="mdl-cell mdl-cell--12-col">
 								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-									<input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" name="gasto-final-por-mes" id="gasto-final-por-mes" value="0">
+									<input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" name="gasto-final-por-mes" id="gasto-final-por-mes" default-value="0" value="0">
 									<label class="mdl-textfield__label" for="gasto-final-por-mes">Gasto mensal</label>
 									<span class="mdl-textfield__error">Valor inválido</span>
 								</div>
 							</div>
 							<div class="mdl-cell mdl-cell--12-col">
 								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-									<input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" name="gasto-final-por-dia" id="gasto-final-por-dia" value="0">
+									<input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" name="gasto-final-por-dia" id="gasto-final-por-dia" default-value="0" value="0">
 									<label class="mdl-textfield__label" for="gasto-final-por-dia">Gasto por dia trabalhado</label>
 									<span class="mdl-textfield__error">Valor inválido</span>
 								</div>
 							</div>
 							<div class="mdl-cell mdl-cell--12-col">
 								<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-									<input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" name="gasto-acumulado-por-ano" id="gasto-acumulado-por-ano" value="0" readonly="readonly">
+									<input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" name="gasto-acumulado-por-ano" id="gasto-acumulado-por-ano" default-value="0"  value="0" readonly="readonly">
 									<label class="mdl-textfield__label" for="gasto-acumulado-por-ano">Gasto acumulado por ano</label>
 									<span class="mdl-textfield__error">Valor inválido</span>
 								</div>

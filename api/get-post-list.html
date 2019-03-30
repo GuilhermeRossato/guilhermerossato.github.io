@@ -9,6 +9,7 @@ permalink: "/api/get-post-list/"
 		"date": "{{ post.date }}",
 		"language": "{{ post.lang }}",
 		"layout": "{{ post.layout }}",
+		"summary": "{{ post.summary }}",
 		"url": "{{ post.url | replace: '"', "''" }}",
 		"tags": ["{{ post.tags | join: '", "' }}"]
 	},

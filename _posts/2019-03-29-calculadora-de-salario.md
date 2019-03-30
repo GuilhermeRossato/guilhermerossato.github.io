@@ -4,6 +4,7 @@ layout: post
 author: Guilherme Rossato
 tags: ['HTML5', 'CSS3', 'Javascript']
 language: pt-br
+summary: Desenvolvi um web-app (mobile) para fazer cálculos relacionados a propostas de salário para facilitar a vida
 ---
 
 [Clique aqui se você só deseja ver o app desenvolvido](/projects/calculadora-de-salario/)
