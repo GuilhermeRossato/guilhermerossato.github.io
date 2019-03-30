@@ -13,12 +13,7 @@ subtitle: Projects
 			<section class="description">
 				<h3 class="title" data-path="{{ post.path }}">{{ post.title }}</h3>
 				<div class="excerpt">
-					{{- if post.summary == "" and post.summary == blank -}}
-						<p class="excerpt variant-0">{{- post.summary | strip_html -}}</p>
-					{{- endif -}}
-					{{- if unless post.summary == "" and post.summary == blank -}}
-						<p class="summary variant-1">{{- post.summary | strip_html -}}</p>
-					{{- endif -}}
+					<p class="excerpt">{% if page.summary %}{{ page.summary }}{% else %}{{ page.title | strip_html }}{% endif %}</p>
 				</div>
 				<div class="footer">
 					<div class="tech-list">
