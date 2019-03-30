@@ -209,11 +209,8 @@ article .footer a {
 	header > .title-wrapper h1 {
 		font-size: 3.5em !important;
 	}
-	header > .title-wrapper > h2 {
+	header > .title-wrapper h2 {
 		font-size: 2vw;
-	}
-	header > .title-wrapper > h2 > .conditional-part {
-		display: none;
 	}
 	header > .nav-wrapper > nav {
 		align-items: center;
@@ -226,6 +223,7 @@ article .footer a {
 		transform: translateY(-16px);
 		box-shadow: inset 0px 0px 61px rgba(255, 255, 255, 0.4);
 		border: 3px solid #444;
+		border-radius: 100%;
 	}
 	article > .description > .title {
 		font-size: 32px;
@@ -236,11 +234,11 @@ article .footer a {
 }
 
 @media screen and (min-width: 1226px) {
-	header > .title-wrapper > h2 {
+	header > .title-wrapper h2 {
 		display: block;
 		font-size: 26px;
 	}
-	header > .title-wrapper > h2 > .conditional-part {
+	header > .title-wrapper h2 > .conditional-part {
 		display: inline;
 	}
 }
