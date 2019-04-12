@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" type="image/x-icon" href="./favicon.ico">
+	<title>Azul</title>
+
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+	<style>
+		body, body > * {
+			max-width: 100vw;
+			margin:0;
+			padding:0;
+			overflow-x: hidden;
+		}
+		h2 {
+			width: 100vw;
+			text-align:center;
+		}
+		h2 {
+			font-size: 13px;
+			margin-top: 40px;
+			margin-bottom: 80px;
+		}
+		h1 {
+			text-align: center;
+			font-size: 21px;
+			margin: 100px 0 50px 0;
+			width: 100vw;
+		}
+		.container {
+			font-size: 18px;
+			width: 100%;
+			text-align: justify;
+		}
+		.container > p {
+			line-height: 30px;
+			margin-bottom: 30px;
+		}
+		@media screen and (min-width: 300px) {
+			h2 {
+				font-size: 13px;
+				margin-top: 40px;
+				margin-bottom: 80px;
+			}
+			h1 {
+				text-align: center;
+				font-size: 21px;
+				margin: 100px 0 50px 0;
+				width: 100vw;
+			}
+			.container {
+				font-size: 18px;
+				width: 94%;
+				text-align: justify;
+			}
+			.container > p {
+				margin-bottom: 20px;
+			}
+		}
+		@media screen and (min-width: 360px) {
+			h2 {
+				font-size: 14px;
+				margin-top: 50px;
+				margin-bottom: 100px;
+			}
+			h1 {
+				text-align: center;
+				font-size: 26px;
+				margin: 100px 0 50px 0;
+				width: 100vw;
+			}
+			.container {
+				font-size: 24px;
+				width: 90%;
+				text-align: justify;
+			}
+			.container > p {
+				margin-bottom: 20px;
+			}
+		}
+		@media screen and (min-width: 580px) {
+			h2 {
+				font-size: 24px;
+				margin-top: 50px;
+				margin-bottom: 100px;
+			}
+			h1 {
+				text-align: center;
+				font-size: 36px;
+				margin: 100px 0 50px 0;
+				width: 100vw;
+			}
+			.container {
+				font-size: 26px;
+				width: 80%;
+				text-align: justify;
+			}
+			.container > p {
+				margin-bottom: 20px;
+			}
+		}
+		@media screen and (min-width: 800px) {
+			h2 {
+				font-size: 28px;
+				margin-top: 150px;
+				margin-bottom: 150px;
+			}
+			h1 {
+				text-align: center;
+				font-size: 48px;
+				margin: 100px 0 50px 0;
+				width: 100vw;
+			}
+			.container {
+				font-size: 28px;
+				width: 75%;
+				text-align: justify;
+			}
+			.container > p {
+				line-height: 40px;
+				margin-bottom: 30px;
+			}
+		}
+		@media screen and (min-width: 900px) {
+			h2 {
+				margin-top: 200px;
+				margin-bottom: 200px;
+			}
+			h1 {
+				text-align: center;
+				font-size: 80px;
+				margin: 100px 0 150px 0;
+				width: 100vw;
+			}
+			.container {
+				font-size: 38px;
+				width: 80%;
+				text-align: justify;
+			}
+			.container > p {
+				line-height: 60px;
+				margin-bottom: 50px;
+			}
+			.container {
+				margin-bottom: 170px;
+			}
+		}
+		.bg-color {
+			transition: background 1s ease;
+		}
+	</style>
+	<script>
+		function goFullscreen() {
+			var elem = document.body;
+			if (elem.requestFullscreen) {
+			  elem.requestFullscreen();
+			} else if (elem.msRequestFullscreen) {
+			  elem.msRequestFullscreen();
+			} else if (elem.mozRequestFullScreen) {
+			  elem.mozRequestFullScreen();
+			} else if (elem.webkitRequestFullscreen) {
+			  elem.webkitRequestFullscreen();
+			}
+		}
+		function getVerticalScrollRatio() {
+			var h = document.documentElement;
+			var b = document.body;
+			var st = 'scrollTop';
+			var sh = 'scrollHeight';
+			return (h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight);
+		}
+		function scrolled() {
+			var scroll = getVerticalScrollRatio();
+			var saturation = FastInterpolation.any(0, 1, 1, 0.675).at(scroll);
+			console.log(scroll, saturation);
+			if (saturation > 1) {
+				saturation = 1;
+			} else if (saturation < 0) {
+				saturation = 0;
+			}
+			document.querySelector(".bg-color").setAttribute("style", "background-color: hsla(202, 34%, "+(saturation*100).toFixed(4)+"%)");
+			//hsla(202, 34%, 64%, 1)
+			//hsla(203, 87%, 72%, 1);
+		}
+		window.addEventListener("scroll", scrolled);
+		window.addEventListener("mousemove", scrolled);
+		setInterval(scrolled, 1000);
+	</script>
+</head>
+<body style="background-color: rgb(0, 0, 0);">
+	<div class="bg-color" style="background-color: rgb(255, 255, 255);">
+		<h2>(Coloque este documento em <a href="#" onclick="(event && event.preventDefault()); return goFullscreen(event)">tela cheia</a>)</h2>
+		<h1>Como observar o azul do céu</h1>
+		<div class="container">
+			<p>
+				Escolha o momento, de nada adianta olhar para cima em horários inoportunos, o céu muda de cor, entre crepusculos cor-de-sangue, mares de núvens cinzentas a tons tão escuros que as luzes das estrelas o atravessam.
+			</p>
+			<p>
+				O melhor momento varia em função de coisas além do seu controle, então não se sabe ao certo o melhor horário para ver o céu, mas ele permanesce azul por longos periodos da manhã e da tarde de cada dia, a escolha do horário vem com a experiencia. Um bom horário para apreciar o sol é as as quatro horas da tarde.
+			</p>
+			<p>
+				É preciso ter cuidado pois o corpo celeste que banha o céu com seus raios luminosos e vibrantes pode danificar suas frágeis retinas, se isso ocorrer, o céu azul que vê hoje não será como o céu azul que verá amanhã, e isso pode interferir no seu sentimento de nostalgia, garantido, no futuro.
+			</p>
+			<p>
+				Desvie o olhar para a imensidão do céu e tenha paciencia, seus olhos precisam de um tempo para se adaptar a algo tão massivo e simbólico quanto a imensidão do céu.
+			</p>
+			<p>
+				Este azul, o mesmo da sua infância e o mesmo até seu decesso, não pode ser apreciado no calor do momento, no frenezi da vida cotidiana, na inquietude das pessoas. Você precisa olhar com uma calma ininterrupta de, no mínimo, 6 segundos.
+			</p>
+			<p>
+				Não deixe sua mente devanear com perguntas como por que azul, e não verde, ou por que claro, e não escuro, os porquês não são deste momento, eles são frutos de uma mente ansiosa e as dúvidas não vão te ajudar a entender os motivos do universo, nem devem, este momento sua concentração no céu é determinante, ou não verá o azul.
+			</p>
+		</div>
+	</div>
+	<script>
+		/*!
+ *
+ * Module Description Here
+ *
+ * @name	FastInterpolation
+ * @type	Javascript Module
+ * @author	Guilherme Rossato
+ * @year	2017
+ * @licence	The Unlicense:  http://unlicense.org/  (no warranties, free to do use / edit / share / sell / claim)
+ *
+ * Usage Example:
+ * Given the points (2,4), (3,6), (4,8), what is y for x=6? [Answer: y = 12]
+ *	FastInterpolation.quadratic(2,4,3,6,4,8, 6); // Original, fastest
+ *	FastInterpolation.degree2(2,4,3,6,4,8, 6); // Original, just as fast as the other
+ *	FastInterpolation.any(2,4,3,6,4,8, 6); // Uses argument length to figure which size automatically, 
+ *	FastInterpolation.any(2,4,3,6,4,8).at(6); // Figures you sent 6 pairs of (x,y) and gives you an object with .at to evaluate.
+ */
+
+const FastInterpolation = (function() {
+	let linear = function(x0, y0, x1, y1, x) {
+		// (verbose): return b(y0, y1, ib(x0, x1, x))
+		return (x * y0 - x1 * y0 - x * y1 + x0 * y1) / (x0 - x1);
+	}
+	let quadratic = function(x0, y0, x1, y1, x2, y2, x) {
+		// (verbose): return b(b(y0, y1, ib(x0, x1, x)), b(y1, y2, ib(x1, x2, x)), ib(x0, x2, x))
+		// (raw)	: return (x*x*x1*y0-x*x1*x1*y0-x*x*x2*y0+x1*x1*x2*y0+x*x2*x2*y0-x1*x2*x2*y0-x*x*x0*y1+x*x0*x0*y1+x*x*x2*y1-x0*x0*x2*y1-x*x2*x2*y1+x0*x2*x2*y1+x*x*x0*y2-x*x0*x0*y2-x*x*x1*y2+x0*x0*x1*y2+x*x1*x1*y2-x0*x1*x1*y2)/(x0*x0*x1-x0*x1*x1-x0*x0*x2+x1*x1*x2+x0*x2*x2-x1*x2*x2);
+		let x_2 = x * x
+		  , x0_2 = x0 * x0
+		  , x1_2 = x1 * x1
+		  , x2_2 = x2 * x2;
+		return (x_2*x1*y0-x*x1_2*y0-x_2*x2*y0+x1_2*x2*y0+x*x2_2*y0-x1*x2_2*y0-x_2*x0*y1+x*x0_2*y1+x_2*x2*y1-x0_2*x2*y1-x*x2_2*y1+x0*x2_2*y1+x_2*x0*y2-x*x0_2*y2-x_2*x1*y2+x0_2*x1*y2+x*x1_2*y2-x0*x1_2*y2)/(x0_2*x1-x0*x1*x1-x0_2*x2+x1_2*x2+x0*x2_2-x1*x2_2);
+	}
+	let cubic = function(x0, y0, x1, y1, x2, y2, x3, y3, x) {
+		// (verbose): return b(b(b(y0, y1, ib(x0, x1, x)), b(y1, y2, ib(x1, x2, x)), ib(x0, x2, x)),b(b(y1, y2, ib(x1, x2, x)), b(y2, y3, ib(x2, x3, x)), ib(x1, x3, x)),ib(x0, x3, x))
+		// (raw)	: return (x*x*x*x1*x1*x2*y0-x*x*x1*x1*x1*x2*y0-x*x*x*x1*x2*x2*y0+x*x1*x1*x1*x2*x2*y0+x*x*x1*x2*x2*x2*y0-x*x1*x1*x2*x2*x2*y0-x*x*x*x1*x1*x3*y0+x*x*x1*x1*x1*x3*y0+x*x*x*x2*x2*x3*y0-x1*x1*x1*x2*x2*x3*y0-x*x*x2*x2*x2*x3*y0+x1*x1*x2*x2*x2*x3*y0+x*x*x*x1*x3*x3*y0-x*x1*x1*x1*x3*x3*y0-x*x*x*x2*x3*x3*y0+x1*x1*x1*x2*x3*x3*y0+x*x2*x2*x2*x3*x3*y0-x1*x2*x2*x2*x3*x3*y0-x*x*x1*x3*x3*x3*y0+x*x1*x1*x3*x3*x3*y0+x*x*x2*x3*x3*x3*y0-x1*x1*x2*x3*x3*x3*y0-x*x2*x2*x3*x3*x3*y0+x1*x2*x2*x3*x3*x3*y0-x*x*x*x0*x0*x2*y1+x*x*x0*x0*x0*x2*y1+x*x*x*x0*x2*x2*y1-x*x0*x0*x0*x2*x2*y1-x*x*x0*x2*x2*x2*y1+x*x0*x0*x2*x2*x2*y1+x*x*x*x0*x0*x3*y1-x*x*x0*x0*x0*x3*y1-x*x*x*x2*x2*x3*y1+x0*x0*x0*x2*x2*x3*y1+x*x*x2*x2*x2*x3*y1-x0*x0*x2*x2*x2*x3*y1-x*x*x*x0*x3*x3*y1+x*x0*x0*x0*x3*x3*y1+x*x*x*x2*x3*x3*y1-x0*x0*x0*x2*x3*x3*y1-x*x2*x2*x2*x3*x3*y1+x0*x2*x2*x2*x3*x3*y1+x*x*x0*x3*x3*x3*y1-x*x0*x0*x3*x3*x3*y1-x*x*x2*x3*x3*x3*y1+x0*x0*x2*x3*x3*x3*y1+x*x2*x2*x3*x3*x3*y1-x0*x2*x2*x3*x3*x3*y1+x*x*x*x0*x0*x1*y2-x*x*x0*x0*x0*x1*y2-x*x*x*x0*x1*x1*y2+x*x0*x0*x0*x1*x1*y2+x*x*x0*x1*x1*x1*y2-x*x0*x0*x1*x1*x1*y2-x*x*x*x0*x0*x3*y2+x*x*x0*x0*x0*x3*y2+x*x*x*x1*x1*x3*y2-x0*x0*x0*x1*x1*x3*y2-x*x*x1*x1*x1*x3*y2+x0*x0*x1*x1*x1*x3*y2+x*x*x*x0*x3*x3*y2-x*x0*x0*x0*x3*x3*y2-x*x*x*x1*x3*x3*y2+x0*x0*x0*x1*x3*x3*y2+x*x1*x1*x1*x3*x3*y2-x0*x1*x1*x1*x3*x3*y2-x*x*x0*x3*x3*x3*y2+x*x0*x0*x3*x3*x3*y2+x*x*x1*x3*x3*x3*y2-x0*x0*x1*x3*x3*x3*y2-x*x1*x1*x3*x3*x3*y2+x0*x1*x1*x3*x3*x3*y2-x*x*x*x0*x0*x1*y3+x*x*x0*x0*x0*x1*y3+x*x*x*x0*x1*x1*y3-x*x0*x0*x0*x1*x1*y3-x*x*x0*x1*x1*x1*y3+x*x0*x0*x1*x1*x1*y3+x*x*x*x0*x0*x2*y3-x*x*x0*x0*x0*x2*y3-x*x*x*x1*x1*x2*y3+x0*x0*x0*x1*x1*x2*y3+x*x*x1*x1*x1*x2*y3-x0*x0*x1*x1*x1*x2*y3-x*x*x*x0*x2*x2*y3+x*x0*x0*x0*x2*x2*y3+x*x*x*x1*x2*x2*y3-x0*x0*x0*x1*x2*x2*y3-x*x1*x1*x1*x2*x2*y3+x0*x1*x1*x1*x2*x2*y3+x*x*x0*x2*x2*x2*y3-x*x0*x0*x2*x2*x2*y3-x*x*x1*x2*x2*x2*y3+x0*x0*x1*x2*x2*x2*y3+x*x1*x1*x2*x2*x2*y3-x0*x1*x1*x2*x2*x2*y3)/(x0*x0*x0*x1*x1*x2-x0*x0*x1*x1*x1*x2-x0*x0*x0*x1*x2*x2+x0*x1*x1*x1*x2*x2+x0*x0*x1*x2*x2*x2-x0*x1*x1*x2*x2*x2-x0*x0*x0*x1*x1*x3+x0*x0*x1*x1*x1*x3+x0*x0*x0*x2*x2*x3-x1*x1*x1*x2*x2*x3-x0*x0*x2*x2*x2*x3+x1*x1*x2*x2*x2*x3+x0*x0*x0*x1*x3*x3-x0*x1*x1*x1*x3*x3-x0*x0*x0*x2*x3*x3+x1*x1*x1*x2*x3*x3+x0*x2*x2*x2*x3*x3-x1*x2*x2*x2*x3*x3-x0*x0*x1*x3*x3*x3+x0*x1*x1*x3*x3*x3+x0*x0*x2*x3*x3*x3-x1*x1*x2*x3*x3*x3-x0*x2*x2*x3*x3*x3+x1*x2*x2*x3*x3*x3)
+		let x_2 = x * x
+		  , x_3 = x_2 * x
+		  ,	x0_2 = x0 * x0
+		  , x0_3 = x0_2 * x0
+		  ,	x1_2 = x1 * x1
+		  , x1_3 = x1_2 * x1
+		  ,	x2_2 = x2 * x2
+		  , x2_3 = x2_2 * x2;
+		return (x_3*x1_2*x2*y0-x_2*x1_3*x2*y0-x_3*x1*x2_2*y0+x*x1_3*x2_2*y0+x_2*x1*x2_3*y0-x*x1_2*x2_3*y0-x_3*x1_2*x3*y0+x_2*x1_3*x3*y0+x_3*x2_2*x3*y0-x1_3*x2_2*x3*y0-x_2*x2_3*x3*y0+x1_2*x2_3*x3*y0+x_3*x1*x3*x3*y0-x*x1_3*x3*x3*y0-x_3*x2*x3*x3*y0+x1_3*x2*x3*x3*y0+x*x2_3*x3*x3*y0-x1*x2_3*x3*x3*y0-x_2*x1*x3*x3*x3*y0+x*x1_2*x3*x3*x3*y0+x_2*x2*x3*x3*x3*y0-x1_2*x2*x3*x3*x3*y0-x*x2_2*x3*x3*x3*y0+x1*x2_2*x3*x3*x3*y0-x_3*x0_2*x2*y1+x_2*x0_3*x2*y1+x_3*x0*x2_2*y1-x*x0_3*x2_2*y1-x_2*x0*x2_3*y1+x*x0_2*x2_3*y1+x_3*x0_2*x3*y1-x_2*x0_3*x3*y1-x_3*x2_2*x3*y1+x0_3*x2_2*x3*y1+x_2*x2_3*x3*y1-x0_2*x2_3*x3*y1-x_3*x0*x3*x3*y1+x*x0_3*x3*x3*y1+x_3*x2*x3*x3*y1-x0_3*x2*x3*x3*y1-x*x2_3*x3*x3*y1+x0*x2_3*x3*x3*y1+x_2*x0*x3*x3*x3*y1-x*x0_2*x3*x3*x3*y1-x_2*x2*x3*x3*x3*y1+x0_2*x2*x3*x3*x3*y1+x*x2_2*x3*x3*x3*y1-x0*x2_2*x3*x3*x3*y1+x_3*x0_2*x1*y2-x_2*x0_3*x1*y2-x_3*x0*x1_2*y2+x*x0_3*x1_2*y2+x_2*x0*x1_3*y2-x*x0_2*x1_3*y2-x_3*x0_2*x3*y2+x_2*x0_3*x3*y2+x_3*x1_2*x3*y2-x0_3*x1_2*x3*y2-x_2*x1_3*x3*y2+x0_2*x1_3*x3*y2+x_3*x0*x3*x3*y2-x*x0_3*x3*x3*y2-x_3*x1*x3*x3*y2+x0_3*x1*x3*x3*y2+x*x1_3*x3*x3*y2-x0*x1_3*x3*x3*y2-x_2*x0*x3*x3*x3*y2+x*x0_2*x3*x3*x3*y2+x_2*x1*x3*x3*x3*y2-x0_2*x1*x3*x3*x3*y2-x*x1_2*x3*x3*x3*y2+x0*x1_2*x3*x3*x3*y2-x_3*x0_2*x1*y3+x_2*x0_3*x1*y3+x_3*x0*x1_2*y3-x*x0_3*x1_2*y3-x_2*x0*x1_3*y3+x*x0_2*x1_3*y3+x_3*x0_2*x2*y3-x_2*x0_3*x2*y3-x_3*x1_2*x2*y3+x0_3*x1_2*x2*y3+x_2*x1_3*x2*y3-x0_2*x1_3*x2*y3-x_3*x0*x2_2*y3+x*x0_3*x2_2*y3+x_3*x1*x2_2*y3-x0_3*x1*x2_2*y3-x*x1_3*x2_2*y3+x0*x1_3*x2_2*y3+x_2*x0*x2_3*y3-x*x0_2*x2_3*y3-x_2*x1*x2_3*y3+x0_2*x1*x2_3*y3+x*x1_2*x2_3*y3-x0*x1_2*x2_3*y3)/(x0_3*x1_2*x2-x0_2*x1_3*x2-x0_3*x1*x2_2+x0*x1_3*x2_2+x0_2*x1*x2_3-x0*x1_2*x2_3-x0_3*x1_2*x3+x0_2*x1_3*x3+x0_3*x2_2*x3-x1_3*x2_2*x3-x0_2*x2_3*x3+x1_2*x2_3*x3+x0_3*x1*x3*x3-x0*x1_3*x3*x3-x0_3*x2*x3*x3+x1_3*x2*x3*x3+x0*x2_3*x3*x3-x1*x2_3*x3*x3-x0_2*x1*x3*x3*x3+x0*x1_2*x3*x3*x3+x0_2*x2*x3*x3*x3-x1_2*x2*x3*x3*x3-x0*x2_2*x3*x3*x3+x1*x2_2*x3*x3*x3)
+	}
+	return {
+		degree2: linear,
+		degree3: quadratic,
+		degree4: cubic,
+
+		linear: linear,
+		quadratic: quadratic,
+		cubic: cubic,
+
+		any: function(...args) {
+			if (args.length === 4)
+				return {
+					at: (x)=>linear(...args, x)
+				}
+			else if (args.length === 5)
+				return linear(...args);
+			else if (args.length === 6)
+				return {
+					at: (x)=>quadratic(...args, x)
+				}
+			else if (args.length === 7)
+				return quadratic(...args);
+			else if (args.length === 8)
+				return {
+					at: (x)=>cubic(...args, x)
+				}
+			else if (args.length === 9)
+				return cubic(...args);
+			else
+				throw new Error("This module has no implementation to handle " + args.length + " parameters");
+		}
+	}
+}());
+
+(typeof exports === "object") && (this.exports = FastInterpolation);
+	</script>
+</body>
+</html>
