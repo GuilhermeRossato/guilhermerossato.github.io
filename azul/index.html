@@ -15,6 +15,15 @@
 			padding:0;
 			overflow-x: hidden;
 		}
+		body:fullscreen {
+		    background-color: rgba(255,255,255,0);
+		}
+		body:-webkit-full-screen {
+		    background-color: rgba(255,255,255,0);
+		}
+		body:-moz-full-screen {
+		    background-color: rgba(255,255,255,0);
+		}
 		h2 {
 			width: 100vw;
 			text-align:center;
@@ -150,7 +159,7 @@
 		}
 		.bg-color {
 			transition: background 1s ease;
-		}
+		}4
 	</style>
 	<script>
 		function goFullscreen() {
@@ -170,8 +179,25 @@
 			var b = document.body;
 			var st = 'scrollTop';
 			var sh = 'scrollHeight';
-			return (h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight);
+			var value = (h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight);
+			if (isNaN(value)) {
+				value = document.body.scrollTop / (document.body.scrollHeight-window.innerHeight);
+				if (isNaN(value)) {
+					console.log("No value!", window.scrollTop, document.body.scrollTop, document.body.scrollHeight, "values");
+					return 0;
+				}
+			}
+			if (value == Infinity) {
+				//console.log("Infinity fix", value, window.scrollTop, document.body.scrollTop, document.body.scrollHeight, "values");
+				value = document.body.scrollTop / (document.body.scrollHeight-window.innerHeight);
+				if (isNaN(value) || value == Infinity) {
+					console.log("Infinity or nan!", value, window.scrollTop, document.body.scrollTop, document.body.scrollHeight, "values");
+					return 0;
+				}
+			}
+			return value;
 		}
+
 		function debounce(func, wait, immediate) {
 			var timeout;
 			return function() {
@@ -191,17 +217,25 @@
 
 		function updateColor() {
 			var scroll = getVerticalScrollRatio();
-			var saturation = FastInterpolation.any(0, 1.1, 1, 0.7).at(scroll);
-			if (saturation > 1) {
-				saturation = 1;
-			} else if (saturation < 0) {
-				saturation = 0;
+			if (isNaN(scroll) || scroll == Infinity) {
+				console.log("Scroll was not a number:", scroll);
+				scroll = 0;
+			}
+			var saturation = FastInterpolation.any(0, 1.1, 1, 0.75, scroll);
+			if (isNaN(saturation)) {
+				console.log("Saturation was not a number: ", scroll);
 			}
 			if (saturation > 1) {
 				saturation = 1;
 			} else if (saturation < 0) {
 				saturation = 0;
 			}
+			if (saturation > 1) {
+				saturation = 1;
+			} else if (saturation < 0.4) {
+				saturation = 0.4;
+			}
+			console.log(saturation);
 			//console.log(saturation);
 			document.querySelector(".bg-color").setAttribute("style", "background-color: hsla(202, 34%, "+(saturation*100).toFixed(4)+"%)");
 		}
@@ -225,7 +259,7 @@
 		setInterval(onScroll, 1000);
 	</script>
 </head>
-<body style="background-color: rgb(0, 0, 0);" onscroll="onScroll(event)">
+<body onscroll="onScroll(event)">
 	<div class="bg-color" style="background-color: rgb(255, 255, 255);">
 		<h2>(Coloque este documento em <a href="#" onclick="(event && event.preventDefault()); return goFullscreen(event)">tela cheia</a>)</h2>
 		<h1>Como observar o azul do céu</h1>
@@ -234,18 +268,18 @@
 				Escolha o momento, de nada adianta olhar para cima em horários inoportunos, o céu muda de cor, entre crepusculos cor-de-sangue, mares de núvens cinzentas a tons tão escuros que as luzes das estrelas o atravessam.
 			</p>
 			<p>
-				O melhor momento varia em função de coisas além do seu controle, então não se sabe ao certo o melhor horário para ver o céu, mas ele permanesce azul por longos periodos da manhã e da tarde de cada dia, a escolha do horário vem com a experiencia. Um bom horário para apreciar o sol é as as quatro horas da tarde.
+				O melhor momento varia em função de coisas além do seu controle, então não se sabe ao certo o melhor horário para ver o céu, mas ele permanesce azul por longos periodos da manhã e da tarde de cada dia, a escolha do horário vem com a experiencia. Um bom horário para apreciar o sol é as quatro horas da tarde.
 			</p>
-			<p>
-				É preciso ter cuidado pois o corpo celeste que banha o céu com seus raios luminosos e vibrantes pode danificar suas frágeis retinas, se isso ocorrer, o céu azul que vê hoje não será como o céu azul que verá amanhã, e isso pode interferir no seu sentimento de nostalgia, garantido, no futuro.
+			<p style="color: #222">
+				É preciso ter cuidado pois o corpo celeste que banha o céu com seus raios luminosos e vibrantes pode danificar suas frágeis retinas, se isso ocorrer, o céu azul que vê hoje não será como o que verá amanhã, e isso pode interferir no seu sentimento de nostalgia no futuro.
 			</p>
-			<p>
+			<p style="color: #111">
 				Desvie o olhar para a imensidão do céu e tenha paciencia, seus olhos precisam de um tempo para se adaptar a algo tão massivo e simbólico quanto a imensidão do céu.
 			</p>
-			<p>
+			<p style="color: #0a0a0a">
 				Este azul, o mesmo da sua infância e o mesmo até seu decesso, não pode ser apreciado no calor do momento, no frenezi da vida cotidiana, na inquietude das pessoas. Você precisa olhar com uma calma ininterrupta de, no mínimo, 6 segundos.
 			</p>
-			<p>
+			<p style="color: #000">
 				Não deixe sua mente devanear com perguntas como por que azul, e não verde, ou por que claro, e não escuro, os porquês não são deste momento, eles são frutos de uma mente ansiosa e as dúvidas não vão te ajudar a entender os motivos do universo, nem devem, este momento sua concentração no céu é determinante, ou não verá o azul.
 			</p>
 		</div>
