@@ -172,25 +172,60 @@
 			var sh = 'scrollHeight';
 			return (h[st] || b[st]) / ((h[sh] || b[sh]) - h.clientHeight);
 		}
-		function scrolled() {
+		function debounce(func, wait, immediate) {
+			var timeout;
+			return function() {
+				var context = this, args = arguments;
+				var later = function() {
+					timeout = null;
+					if (!immediate) func.apply(context, args);
+				};
+				var callNow = immediate && !timeout;
+				clearTimeout(timeout);
+				timeout = setTimeout(later, wait);
+				if (callNow) {
+					func.apply(context, args);
+				}
+			};
+		};
+
+		function updateColor() {
 			var scroll = getVerticalScrollRatio();
-			var saturation = FastInterpolation.any(0, 1, 1, 0.675).at(scroll);
-			console.log(scroll, saturation);
+			var saturation = FastInterpolation.any(0, 1.1, 1, 0.7).at(scroll);
 			if (saturation > 1) {
 				saturation = 1;
 			} else if (saturation < 0) {
 				saturation = 0;
 			}
+			if (saturation > 1) {
+				saturation = 1;
+			} else if (saturation < 0) {
+				saturation = 0;
+			}
+			//console.log(saturation);
 			document.querySelector(".bg-color").setAttribute("style", "background-color: hsla(202, 34%, "+(saturation*100).toFixed(4)+"%)");
-			//hsla(202, 34%, 64%, 1)
-			//hsla(203, 87%, 72%, 1);
 		}
-		window.addEventListener("scroll", scrolled);
-		window.addEventListener("mousemove", scrolled);
-		setInterval(scrolled, 1000);
+		function onScroll() {
+			if (!window.updateColorBounced) {
+				window.updateColorBounced = debounce(updateColor, 100);
+			}
+			if (window.updateColorBounced instanceof Function) {
+				window.updateColorBounced();
+			} else {
+				if (window.updateColor instanceof Function) {
+					window.updateColor();
+				} else {
+					updateColor();
+				}
+			}
+		}
+		window.addEventListener("load", onScroll);
+		window.addEventListener("scroll", onScroll);
+		window.addEventListener("mousemove", onScroll);
+		setInterval(onScroll, 1000);
 	</script>
 </head>
-<body style="background-color: rgb(0, 0, 0);">
+<body style="background-color: rgb(0, 0, 0);" onscroll="onScroll(event)">
 	<div class="bg-color" style="background-color: rgb(255, 255, 255);">
 		<h2>(Coloque este documento em <a href="#" onclick="(event && event.preventDefault()); return goFullscreen(event)">tela cheia</a>)</h2>
 		<h1>Como observar o azul do céu</h1>
