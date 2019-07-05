@@ -3,15 +3,136 @@ title: Test post please ignore
 layout: post
 author: Guilherme Rossato
 tags: ['HTML5', 'CSS3', 'Javascript']
-permalink: "test-post-please-ignore"
+permalink: test-post-please-ignore/
+lang: pt-br
+summary: Este é o primeiro post no meu blog e o objetivo dele é testar como o Jekyll (ferramenta de geração de página estática) funciona e como o Github Pages se comporta quanto a estrutura do código. Clicando em 'Ler Mais' voce pode ver o script executando.
 ---
-This is an HTML test post, used to test my API and whatnot.
-<br>
-Need a few posts to test ajax post loading
-<br>
-<div class="test">Js it not working</div>
+<p>Este é o primeiro post no meu blog e o objetivo dele é testar como o Jekyll (ferramenta de geração de página estática) funciona e como o Github Pages se comporta quanto a estrutura do código.</p>
+<p>Por exemplo, o canvas abaixo deve ser capaz de mostrar um velho experimento que criei em 2013 se o javascript estiver habilitado:</p>
+<p><canvas width="600" height="380" style="margin: 0;padding: 0; border: 1px solid #444; border-radius:1px">Mas seu browser nem suporta canvas!</canvas></p>
+<p>O que você está vendo é basicamente um experimento de <a rel="nofollow" href="https://pt.wikipedia.org/wiki/Curva_de_B%C3%A9zier">curvas de bezier</a>, também conhecido por ser uma interpolação linear de vários níveis.</p>
 <script>
-	setTimeout(function() {
-		document.body.querySelector(".test").innerText = "Oh, javascript is working!";
-	}, 2000);
+var canvas = document.querySelector("canvas");
+var ctx = canvas.getContext("2d");
+var sizeX,sizeY,centerX,centerY;
+var fcount, parts;
+var factor = 750;
+
+(function(){
+	sizeX = canvas.width; sizeY = canvas.height;
+	centerX = sizeX/2; centerY = sizeY/2;
+	fcount = 0;
+	parts = new Array()
+	ctx.lineCap = "round";
+	cleanUp();
+	drawScreen();
+	step();
+})();
+
+function step() {
+	fcount++;
+	fcount++;
+	drawScreen();
+	requestAnimationFrame(step);
+};
+
+function benzi(lastArr,z) {
+	var newArr = new Array();
+	var altArr = new Array();
+	ctx.beginPath();
+	for (var lp = 0;lp<(lastArr.length-1);lp++) {
+		var x0 = lastArr[lp].x,
+			y0 = lastArr[lp].y,
+			x1 = lastArr[lp+1].x,
+			y1 = lastArr[lp+1].y,
+			t0 = z-(1/factor),
+			t1 = z;
+		altArr[lp] = {x:bet(x0,x1,t0), y:bet(y0,y1,t0)};
+		newArr[lp] = {x:bet(x0,x1,t0), y:bet(y0,y1,t1)};
+		ctx.moveTo(bet(x0,x1,t0),bet(y0,y1,t0));
+		ctx.lineTo(bet(x0,x1,t1),bet(y0,y1,t1));
+	}
+	ctx.stroke();
+	var res = new Object();
+	res.obj1 = newArr;
+	res.obj2 = altArr;
+	return res;
+}
+
+function drawScreen() {
+	if (fcount % factor === 0) {
+		sizeX = canvas.width; sizeY = canvas.height;
+		centerX = sizeX/2; centerY = sizeY/2;
+		cleanUp();
+		ctx.lineCap = "round";
+		ctx.fillStyle = "rgba(255,255,255,0.2)";
+		ctx.fillRect(0,0,sizeX,sizeY);
+		parts = new Array();
+		for (var lp = 0;lp<8;lp++) {
+			parts[lp] = new Object();
+			parts[lp].x = 0.1+Math.random()*(sizeX-0.2);
+			parts[lp].y = 0.1+Math.random()*(sizeY-0.2);
+		}
+	} else {
+		ctx.fillStyle = "rgba(255,255,255,0.05)";
+		ctx.fillRect(0,0,sizeX,sizeY);
+		ctx.strokeStyle = "#000";
+		var t = (fcount % factor)/factor;
+		var ars = new Array();
+		var lars = new Array();
+		ars[0] = new Array();
+		lars[0] = new Array();
+		
+		ctx.strokeStyle = "#808";
+		ctx.beginPath();
+		for (var lp = 0;lp<parts.length-1;lp++)
+		{
+			var x0 = parts[lp].x, y0 = parts[lp].y, x1 = parts[lp+1].x, y1 = parts[lp+1].y, t0 = t-(1/factor), t1 = t;
+			lars[0][lp] = {x:bet(x0,x1,t0), y:bet(y0,y1,t0)};
+			ars[0][lp] = {x:bet(x0,x1,t0), y:bet(y0,y1,t1)};
+			ctx.moveTo(bet(x0,x1,t0),bet(y0,y1,t0));
+			ctx.lineTo(bet(x0,x1,t0)+1,bet(y0,y1,t0)+1);
+		}
+		ctx.stroke();
+		
+		ctx.strokeStyle = "#008";
+		ars[1] = new Array();
+		lars[1] = new Array();
+		ctx.beginPath();
+		ctx.lineWidth = 3;
+		for (var lp = 0;lp<(ars[0].length-1);lp++)
+		{
+			var x0 = ars[0][lp].x, y0 = ars[0][lp].y, x1 = ars[0][lp+1].x, y1 = ars[0][lp+1].y, t0 = t, t1 = t+(2/factor);
+			lars[1][lp] = {x:bet(x0,x1,t0), y:bet(y0,y1,t0)};
+			 ars[1][lp] = {x:bet(x0,x1,t0), y:bet(y0,y1,t1)};
+			ctx.moveTo(bet(x0,x1,t0),bet(y0,y1,t0));
+			ctx.lineTo(bet(x0,x1,t1),bet(y0,y1,t1));
+		}
+		ctx.stroke();
+		
+		ctx.strokeStyle = "#800";
+
+		ctx.strokeStyle = "#800";
+		var robj = benzi(ars[1],t);
+		ars[2] = new Array();
+		ctx.beginPath();
+		for (var lp = 0;lp<(ars[1].length-1);lp++)
+		{
+			var x0 = ars[1][lp].x, y0 = ars[1][lp].y, x1 = ars[1][lp+1].x, y1 = ars[1][lp+1].y, t0 = t, t1 = t+(2/factor);
+			ars[2][lp] = {x:bet(x0,x1,t0), y:bet(y0,y1,t0)};
+			ctx.moveTo(bet(x0,x1,t0),bet(y0,y1,t0));
+			ctx.lineTo(bet(x0,x1,t1),bet(y0,y1,t1));
+		}
+		ctx.stroke();
+	}
+}
+
+function cleanUp() {
+	ctx.clearRect(0,0,sizeX,sizeY);
+}
+
+function bet(min,max,per) {
+	return (min+((max-min)*per));
+}
 </script>
+<p>Isso é tudo para este post :)</p>

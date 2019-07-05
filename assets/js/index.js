@@ -9,4 +9,7 @@ function on_page_load() {
 		element.onclick = ignore_input;
 	});
 }
+
+
+
 window.addEventListener("load", on_page_load);

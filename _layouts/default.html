@@ -1,21 +1,22 @@
 {% include header.html %}
 	<div class="main-desc">
-		<h3>Projects</h3>
+		<h3>Projetos</h3>
 	</div>
 	<main class="content">
 {{ content }}
 		<div class="post-loader">
 			<span id="spinning"></span>
-			<h4>Loading more posts...</h4>
+			<h4>Carregando mais postagens...</h4>
 		</div>
 	</main>
 	<footer>
-		<p>You have reached the end of the website! Thanks for reading!</p>
-		<p class="copyright">© <span class='year'>{{ site.time | date: "%Y" }}</div> Guilherme Rossato. All Rights Reserved.</p>
+		<p>Você alcançou o final do meu site! Obrigado pela visita :)</p>
+		<p class="copyright">© <span class='year'>{{ site.time | date: "%Y" }}</div> Guilherme Rossato. Todos os direitos reservados.</p>
 	</footer>
 	<!--
 	<script src="{{ site.data.route.host }}assets/build/index.min.js"></script>
 	-->
 	<script async type="module" src="{{ site.data.route.host }}assets/js/index.js"></script>
+	<script async type="module" src="{{ site.data.route.host }}assets/js/load-posts.js"></script>
 </body>
 </html>
