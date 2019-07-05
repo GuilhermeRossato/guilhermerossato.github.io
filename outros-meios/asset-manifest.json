@@ -1,0 +1,17 @@
+{
+  "files": {
+    "main.css": "https://www.guilherme-rossato.com/creativity-lab/static/css/main.2d348068.chunk.css",
+    "main.js": "https://www.guilherme-rossato.com/creativity-lab/static/js/main.3295a12a.chunk.js",
+    "main.js.map": "https://www.guilherme-rossato.com/creativity-lab/static/js/main.3295a12a.chunk.js.map",
+    "runtime~main.js": "https://www.guilherme-rossato.com/creativity-lab/static/js/runtime~main.f2d847c4.js",
+    "runtime~main.js.map": "https://www.guilherme-rossato.com/creativity-lab/static/js/runtime~main.f2d847c4.js.map",
+    "static/js/2.eb7fa3cc.chunk.js": "https://www.guilherme-rossato.com/creativity-lab/static/js/2.eb7fa3cc.chunk.js",
+    "static/js/2.eb7fa3cc.chunk.js.map": "https://www.guilherme-rossato.com/creativity-lab/static/js/2.eb7fa3cc.chunk.js.map",
+    "index.html": "https://www.guilherme-rossato.com/creativity-lab/index.html",
+    "precache-manifest.d9d2b94a3742ece2c119e059f0778f85.js": "https://www.guilherme-rossato.com/creativity-lab/precache-manifest.d9d2b94a3742ece2c119e059f0778f85.js",
+    "service-worker.js": "https://www.guilherme-rossato.com/creativity-lab/service-worker.js",
+    "static/css/main.2d348068.chunk.css.map": "https://www.guilherme-rossato.com/creativity-lab/static/css/main.2d348068.chunk.css.map",
+    "static/media/clock-icon.png": "https://www.guilherme-rossato.com/creativity-lab/static/media/clock-icon.59bf83e5.png",
+    "static/media/front-image.jpg": "https://www.guilherme-rossato.com/creativity-lab/static/media/front-image.29226ac3.jpg"
+  }
+}
