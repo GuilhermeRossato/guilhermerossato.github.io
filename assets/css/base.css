@@ -6,3 +6,16 @@
     position: relative;
     padding: 16px 0;
 }
+
+@media screen and (min-width: 768px) {
+    .container {
+        margin: 0 auto;
+        width: 728px;
+    }
+}
+
+@media print {
+  .container {
+    max-width: 728px;
+  }
+}
