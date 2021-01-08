@@ -1,17 +1,9 @@
 {
   "name": "home-page",
   "version": "1.0.0",
-  "description": "A Home page for my personal portofolio",
+  "description": "A Home page for my personal blog",
   "main": "index.js",
-  "scripts": {
-    "start": "php -S localhost:80",
-    "build": "npm run webpack && npm run babel && npm run compress",
-
-
-    "webpack": "webpack --config webpack.config.js",
-    "babel": "babel --presets es2015 assets/build/index.min.js -o assets/build/index.min.js",
-    "compress": "minify assets/build -d assets/build"
-  },
+  "scripts": {},
   "author": "Guilherme Rossato",
   "license": "MIT",
   "devDependencies": {
