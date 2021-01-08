@@ -1,3 +1,3 @@
-# Guilherme Rossato Portofolio
+# Guilherme Rossato Blog
 
-Second rewrite of my personal portofolio
+Available at https://www.grossato.com.br/
