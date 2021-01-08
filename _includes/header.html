@@ -5,9 +5,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="build-time" content="{{ site.time }}">
 	<link href="{{ site.data.route.host }}assets/css/base.css" rel="stylesheet" type="text/css">
-	<link href="{{ site.data.route.host }}assets/css/tech-icons.css" rel="stylesheet" type="text/css">
 	<link href="{{ site.data.route.host }}assets/css/roboto.css" rel="stylesheet" type="text/css">
 	<link href="{{ site.data.route.host }}assets/css/main.css" rel="stylesheet" type="text/css">
+	<link href="{{ site.data.route.host }}assets/css/header.css" rel="stylesheet" type="text/css">
 	<link rel="icon" type="image/x-icon" href="./favicon.ico">
 	<title>Someone's Blog</title>
 	<script>
@@ -18,13 +18,13 @@
 	<header>
 		<div class="container">
 			<a class="logo-wrapper" href="/">
-				<img class="logo myself" src="{{ site.data.route.host }}assets/images/moustache-self.png" alt="The code magician">
+				<img class="logo myself" src="{{ site.data.route.host }}assets/images/moustache-self-nobg.png">
 			</a>
-		</div>
-		<div class="title-wrapper">
-			<h1>A Programming Blog of Someone</h1>
-		</div>
-		<div class="nav-wrapper">
-{% include navigation.html %}
+			<a class="title-wrapper" href="/">
+				<h1>A Programming Blog of Someone</h1>
+			</a>
+			<div class="nav-wrapper">
+	{% include navigation.html %}
+			</div>
 		</div>
 	</header>

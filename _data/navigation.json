@@ -1,14 +1,14 @@
 [
 	{
-		"name": "Home page",
+		"name": "Blog",
 		"link": "/"
 	},
 	{
-		"name": "Experience",
-		"link": "/experience/"
+		"name": "Github",
+		"link": "https://github.com/GuilhermeRossato/"
 	},
 	{
-		"name": "Contact",
-		"link": "/Contact/"
+		"name": "Linkedin",
+		"link": "https://www.linkedin.com/in/guilherme-rossato/"
 	}
 ]
