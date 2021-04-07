@@ -61,18 +61,17 @@
 		<animateTransform attributeName="transform" type="rotate" calcMode="spline" values="0 50 50;360 50 50" times="0;1" keySplines="0.5 0 0.5 1" repeatCount="indefinite" dur="1.5s" begin="-0.4375s"></animateTransform>
 		</circle><animateTransform attributeName="transform" type="rotate" calcMode="spline" values="0 50 50;0 50 50" times="0;1" keySplines="0.5 0 0.5 1" repeatCount="indefinite" dur="1.5s"></animateTransform></g></svg>
 	</div>
-	<div id="text" style="position: fixed; top: 9vw; left: 0; width: 100vw; height: 90vh; color: #444; font-family: 'Courier New', Courier, monospace; display: flex; justify-content: center; align-items: center;">
+	<pre id="text" style="position: fixed; top: 9vw; left: 0; width: 100vw; height: 90vh; color: #444; font-family: 'Courier New', Courier, monospace; display: flex; justify-content: center; align-items: center;">
 		Loading...
-	</div>
+	</pre>
 	<script async defer>
 		function setText(text) {
 			document.title = text;
-			window.text = text;
+			window.text.textContent = text;
 		}
 
 		async function onPageLoad() {
-			console.log("Hi");
-			setText("Script started");
+			setText("Checking if server is up...");
 			let success;
 			try {
 				const response = await fetch("https://camisadoavesso.com.br/");
@@ -81,7 +80,7 @@
 				success = false;
 			}
 			if (!success) {
-				setText("Sorry :( Server is offline");
+				setText("Sorry :( Server is offline\nCheck if Guilherme is streaming");
 				return;
 			}
 			setText("You will be redirected shortly");
