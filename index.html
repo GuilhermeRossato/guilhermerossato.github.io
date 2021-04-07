@@ -61,7 +61,7 @@
 		<animateTransform attributeName="transform" type="rotate" calcMode="spline" values="0 50 50;360 50 50" times="0;1" keySplines="0.5 0 0.5 1" repeatCount="indefinite" dur="1.5s" begin="-0.4375s"></animateTransform>
 		</circle><animateTransform attributeName="transform" type="rotate" calcMode="spline" values="0 50 50;0 50 50" times="0;1" keySplines="0.5 0 0.5 1" repeatCount="indefinite" dur="1.5s"></animateTransform></g></svg>
 	</div>
-	<div id="text" style="position: fixed; top: 9vw; left: 0; width: 100vw; height: 90vh; color: #444; font-family: 'Courier New', Courier, monospace">
+	<div id="text" style="position: fixed; top: 9vw; left: 0; width: 100vw; height: 90vh; color: #444; font-family: 'Courier New', Courier, monospace; display: flex; justify-content: center; align-items: center;">
 		Loading...
 	</div>
 	<script async defer>
@@ -72,7 +72,26 @@
 
 		async function onPageLoad() {
 			console.log("Hi");
-			setText("Error: nothing to see here");
+			setText("Script started");
+			let success;
+			try {
+				const response = await fetch("https://camisadoavesso.com.br/");
+				success = (await response.text()).length > 0;
+			} catch (err) {
+				success = false;
+			}
+			if (!success) {
+				setText("Sorry :( Server is offline");
+				return;
+			}
+			setText("You will be redirected shortly");
+			await sleep(1000);
+			setText("Are you ready?");
+			await sleep(400);
+			window.location = "https://camisadoavesso.com.br/";
+			document.body.onclick = window.onclick = function() {
+				window.location = "https://camisadoavesso.com.br/";
+			}
 		}
 
 		(async function() {
