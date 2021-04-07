@@ -83,10 +83,8 @@
 				setText("Sorry :( Server is offline\nCheck if  is streaming");
 				return;
 			}
-			setText("You will be redirected shortly");
+			setText("Server is Online!");
 			await sleep(1000);
-			setText("Are you ready?");
-			await sleep(400);
 			window.text.innerHTML = `
 				<button onclick="window.location = 'https://twitch.tv/camisadoavesso';">Assistir</button>
 				<button onclick="window.location = 'https://camisadoavesso.com.br/';">Abrir</button>
