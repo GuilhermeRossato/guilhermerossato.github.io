@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta name="build-time" content="{{ site.time }}">
 	<link rel="icon" type="image/x-icon" href="./favicon.ico">
-	<title>Carregando</title>
+	<title>Carregando...</title>
 	<script>
 		window.wait = window.sleep = (ms = 100) => new Promise(resolve => setTimeout(resolve, ms));
 	</script>
@@ -80,16 +80,22 @@
 				success = false;
 			}
 			if (!success) {
-				setText("Sorry :( Server is offline\nCheck if Guilherme is streaming");
+				setText("Sorry :( Server is offline\nCheck if  is streaming");
 				return;
 			}
 			setText("You will be redirected shortly");
 			await sleep(1000);
 			setText("Are you ready?");
 			await sleep(400);
-			window.location = "https://camisadoavesso.com.br/";
-			document.body.onclick = window.onclick = function() {
+			window.text.innerHTML = `
+				<button onclick="window.location = 'https://twitch.tv/camisadoavesso';">Assistir</button>
+				<button onclick="window.location = 'https://camisadoavesso.com.br/';">Abrir</button>
+			`;
+			await sleep(7000);
+			if (Math.random() > 0.5) {
 				window.location = "https://camisadoavesso.com.br/";
+			} else {
+				window.location = "https://twitch.tv/camisadoavesso";
 			}
 		}
 
