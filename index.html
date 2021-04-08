@@ -84,12 +84,12 @@
 				return;
 			}
 			setText("Server is Online!");
-			await sleep(1000);
+			await sleep(1500);
 			window.text.innerHTML = `
-				<button onclick="window.location = 'https://twitch.tv/camisadoavesso';">Assistir</button>
-				<button onclick="window.location = 'https://camisadoavesso.com.br/';">Abrir</button>
+				<button style="transform: scale(1.5);" onclick="window.location = 'https://twitch.tv/camisadoavesso';">Assistir</button>
+				<button style="transform: scale(1.5); margin-left: 50px;" onclick="window.location = 'https://camisadoavesso.com.br/';">Abrir</button>
 			`;
-			await sleep(7000);
+			await sleep(15000);
 			if (Math.random() > 0.5) {
 				window.location = "https://camisadoavesso.com.br/";
 			} else {
