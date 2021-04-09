@@ -74,13 +74,13 @@
 			setText("Checking if server is up...");
 			let success;
 			try {
-				const response = await fetch("https://camisadoavesso.com.br/");
+				const response = await fetch("https://camisadoavesso.com.br/ping/");
 				success = (await response.text()).length > 0;
 			} catch (err) {
 				success = false;
 			}
 			if (!success) {
-				setText("Sorry :( Server is offline\nCheck if  is streaming");
+				setText("Sorry :( Server is offline\nMessage me on instagram @g.rossato");
 				return;
 			}
 			setText("Server is Online!");
